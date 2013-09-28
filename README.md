@@ -1,0 +1,4 @@
+Paypal
+======
+
+Eden Paypal component
