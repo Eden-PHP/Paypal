@@ -31,4 +31,26 @@ class Eden_Oauth_Tests_Paypal_FactoryTest extends \PHPUnit_Framework_TestCase
         print_r($checkout);
         $this->assertInstanceOf('Eden\\Paypal\\Checkout', $checkout);
     }
+
+    // public function testDirect()
+    // {
+    //     $object = eden('paypal')->direct('user', 'password', 'signature', 'certificate');
+    //     print_r($object);
+    //     $this->assertInstanceOf('Eden\\Paypal\\Direct', $object);
+    // }
+
+    public function testRecurring()
+    {
+        $object = eden('paypal')->recurring('user', 'password', 'signature', 'certificate');
+        print_r($object);
+        $this->assertInstanceOf('Eden\\Paypal\\Recurring', $object);
+    }
+
+    public function testTransaction()
+    {
+        $object = eden('paypal')->transaction('user', 'password', 'signature', 'certificate');
+        print_r($object);
+        $this->assertInstanceOf('Eden\\Paypal\\Transaction', $object);
+    }
+
 }
