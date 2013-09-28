@@ -10,6 +10,7 @@
 namespace Eden\Paypal;
 
 use Eden\Core\Base as CoreBase;
+use Eden\Curl\Base as Curl;
 
 /**
  * Paypal Base

@@ -28,7 +28,7 @@ class Factory extends CoreBase
 {
     const PEM = '/paypal/cacert.pem';
     const INSTANCE = 1;
-        
+
     /**
      * Returns paypal authorization
      *

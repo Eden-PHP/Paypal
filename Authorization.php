@@ -38,7 +38,7 @@ class Authorization extends Base
     const NO_COMPLETE = 'NoComplete';
     const NOTE = 'NOTE';
     
-    protected $amout = null;
+    protected $amount = null;
     protected $currency = null;
     protected $completeType = null;
     protected $note = null;
