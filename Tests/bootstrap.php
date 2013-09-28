@@ -1,6 +1,6 @@
 <?php //-->
 /*
- * This file is part of the Oauth package of the Eden PHP Library.
+ * This file is part of the Paypal package of the Eden PHP Library.
  * (c) 2012-2013 Openovate Labs
  *
  * Copyright and license information can be found at LICENSE
@@ -10,8 +10,6 @@
 require_once __DIR__.'/../../Core/Loader.php';
 Eden\Core\Loader::i()
 	->addRoot(true, 'Eden\\Core')
-	->addRoot(realpath(__DIR__.'/../..'), 'Eden\\Oauth')
-	->addRoot(realpath(__DIR__.'/../..'), 'Eden\\Curl')
 	->addRoot(realpath(__DIR__.'/../..'), 'Eden\\Paypal')
 	->register()
 	->load('Controller');
