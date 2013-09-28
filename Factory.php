@@ -26,169 +26,169 @@ use Eden\Core\Base as CoreBase;
  */
 class Factory extends CoreBase
 {
-	const PEM = '/paypal/cacert.pem';
-	const INSTANCE = 1;
-		
-	/**
-	 * Returns paypal authorization
-	 *
-	 * @param string API username
-	 * @param string API password
-	 * @param string API signature
-	 * @param string API certificate file
-	 * @return Authorization
-	 */
-	public function authorization($user, $password, $signature, $certificate = NULL)
-	{
-		Argument::i()
-			->test(1, 'string')
-			->test(2, 'string')
-			->test(3, 'string')
-			->test(4, 'string', 'null');
-			
-		if(!is_string($certificate)) {
-			$certificate = dirname(__FILE__).self::PEM;
-		}
-		
-		return Authorization::i($user, $password, $signature, $certificate);
-	}
-	
-	/**
-	 * Returns paypal billing
-	 *
-	 * @param string	API username
-	 * @param string	API password
-	 * @param string	API signature
-	 * @param string	API certificate file
-	 * @return Billing
-	 */
-	public function billing($user, $password, $signature, $certificate = NULL)
-	{
-		if(!is_string($certificate)) {
-			$certificate = dirname(__FILE__).self::PEM;
-		}
-		
-		return Billing::i($user, $password, $signature, $certificate);
-	}
+    const PEM = '/paypal/cacert.pem';
+    const INSTANCE = 1;
+        
+    /**
+     * Returns paypal authorization
+     *
+     * @param string API username
+     * @param string API password
+     * @param string API signature
+     * @param string API certificate file
+     * @return Authorization
+     */
+    public function authorization($user, $password, $signature, $certificate = NULL)
+    {
+        Argument::i()
+            ->test(1, 'string')
+            ->test(2, 'string')
+            ->test(3, 'string')
+            ->test(4, 'string', 'null');
+            
+        if(!is_string($certificate))
+        {
+            $certificate = dirname(__FILE__).self::PEM;
+        }
+        return Authorization::i($user, $password, $signature, $certificate);
+    }
+    
+    /**
+     * Returns paypal billing
+     *
+     * @param string    API username
+     * @param string    API password
+     * @param string    API signature
+     * @param string    API certificate file
+     * @return Billing
+     */
+    public function billing($user, $password, $signature, $certificate = NULL)
+    {
+        if(!is_string($certificate))
+        {
+            $certificate = dirname(__FILE__).self::PEM;
+        }
+        return Billing::i($user, $password, $signature, $certificate);
+    }
 
-	/**
-	 * Returns paypal button
-	 *
-	 * @param string API username
-	 * @param string API password
-	 * @param string API signature
-	 * @param string API certificate file
-	 * @return Button
-	 */
-	public function button($user, $password, $signature, $certificate = NULL)
-	{
-		Argument::i()
-			->test(1, 'string')
-			->test(2, 'string')
-			->test(3, 'string')
-			->test(4, 'string', 'null');
-			
-		if(!is_string($certificate)) {
-			$certificate = dirname(__FILE__).self::PEM;
-		}
-		
-		return Button::i($user, $password, $signature, $certificate);
-	}
-	
-	/**
-	 * Returns paypal express checkout
-	 *
-	 * @param string
-	 * @param string API username
-	 * @param string API password
-	 * @param string API signature
-	 * @param string|null API certificate file
-	 * @return Checkout
-	 */
-	public function checkout($user, $password, $signature, $certificate = NULL, $live = false)
-	{
-		Argument::i()
-			->test(1, 'string')
-			->test(2, 'string')
-			->test(3, 'string')
-			->test(4, 'string', 'null');
-			
-		if(!is_string($certificate)) {
-			$certificate = dirname(__FILE__).self::PEM;
-		}
-		
-		return Checkout::i($user, $password, $signature, $certificate, $live);
-	}
-	
-	/**
-	 * Returns paypal directPayment
-	 *
-	 * @param string API username
-	 * @param string API password
-	 * @param string API signature
-	 * @param string API certificate file
-	 * @return Direct
-	 */
-	public function direct($user, $password, $signature, $certificate = NULL)
-	{
-		Argument::i()
-			->test(1, 'string')
-			->test(2, 'string')
-			->test(3, 'string')
-			->test(4, 'string', 'null');
-			
-		if(!is_string($certificate)) {
-			$certificate = dirname(__FILE__).self::PEM;
-		}
-		
-		return Direct::i($user, $password, $signature, $certificate);
-	}
-	
-	/**
-	 * Returns paypal recurringPayment
-	 *
-	 * @param string API username
-	 * @param string API password
-	 * @param string API signature
-	 * @param string API certificate file
-	 * @return Recurring
-	 */
-	public function recurring($user, $password, $signature, $certificate = NULL)
-	{
-		Argument::i()
-			->test(1, 'string')
-			->test(2, 'string')
-			->test(3, 'string')
-			->test(4, 'string', 'null');
-			
-		if(!is_string($certificate)) {
-			$certificate = dirname(__FILE__).self::PEM;
-		}
-		
-		return Recurring::i($user, $password, $signature, $certificate);
-	}
-	
-	/**
-	 * Returns paypal transaction
-	 *
-	 * @param string API username
-	 * @param string API password
-	 * @param string API signature
-	 * @param string API certificate file
-	 * @return Transaction
-	 */
-	public function transaction($user, $password, $signature, $certificate = NULL)
-	{
-		Argument::i()
-			->test(1, 'string')
-			->test(2, 'string')
-			->test(3, 'string')
-			->test(4, 'string', 'null');
-			
-		if(!is_string($certificate)) {
-			$certificate = dirname(__FILE__).self::PEM;
-		}
-		
-		return Transaction::i($user, $password, $signature, $certificate);
-	}
+    /**
+     * Returns paypal button
+     *
+     * @param string API username
+     * @param string API password
+     * @param string API signature
+     * @param string API certificate file
+     * @return Button
+     */
+    public function button($user, $password, $signature, $certificate = NULL)
+    {
+        Argument::i()
+            ->test(1, 'string')
+            ->test(2, 'string')
+            ->test(3, 'string')
+            ->test(4, 'string', 'null');
+            
+        if(!is_string($certificate))
+        {
+            $certificate = dirname(__FILE__).self::PEM;
+        }
+        return Button::i($user, $password, $signature, $certificate);
+    }
+    
+    /**
+     * Returns paypal express checkout
+     *
+     * @param string
+     * @param string API username
+     * @param string API password
+     * @param string API signature
+     * @param string|null API certificate file
+     * @return Checkout
+     */
+    public function checkout($user, $password, $signature, $certificate = NULL, $live = false)
+    {
+        Argument::i()
+            ->test(1, 'string')
+            ->test(2, 'string')
+            ->test(3, 'string')
+            ->test(4, 'string', 'null');
+            
+        if(!is_string($certificate))
+        {
+            $certificate = dirname(__FILE__).self::PEM;
+        }
+        return Checkout::i($user, $password, $signature, $certificate, $live);
+    }
+    
+    /**
+     * Returns paypal directPayment
+     *
+     * @param string API username
+     * @param string API password
+     * @param string API signature
+     * @param string API certificate file
+     * @return Direct
+     */
+    public function direct($user, $password, $signature, $certificate = NULL)
+    {
+        Argument::i()
+            ->test(1, 'string')
+            ->test(2, 'string')
+            ->test(3, 'string')
+            ->test(4, 'string', 'null');
+            
+        if(!is_string($certificate))
+        {
+            $certificate = dirname(__FILE__).self::PEM;
+        }
+        return Direct::i($user, $password, $signature, $certificate);
+    }
+    
+    /**
+     * Returns paypal recurringPayment
+     *
+     * @param string API username
+     * @param string API password
+     * @param string API signature
+     * @param string API certificate file
+     * @return Recurring
+     */
+    public function recurring($user, $password, $signature, $certificate = NULL)
+    {
+        Argument::i()
+            ->test(1, 'string')
+            ->test(2, 'string')
+            ->test(3, 'string')
+            ->test(4, 'string', 'null');
+            
+        if(!is_string($certificate))
+        {
+            $certificate = dirname(__FILE__).self::PEM;
+        }
+        return Recurring::i($user, $password, $signature, $certificate);
+    }
+    
+    /**
+     * Returns paypal transaction
+     *
+     * @param string API username
+     * @param string API password
+     * @param string API signature
+     * @param string API certificate file
+     * @return Transaction
+     */
+    public function transaction($user, $password, $signature, $certificate = NULL)
+    {
+        Argument::i()
+            ->test(1, 'string')
+            ->test(2, 'string')
+            ->test(3, 'string')
+            ->test(4, 'string', 'null');
+            
+        if(!is_string($certificate))
+        {
+            $certificate = dirname(__FILE__).self::PEM;
+        }
+        return Transaction::i($user, $password, $signature, $certificate);
+    }
 }

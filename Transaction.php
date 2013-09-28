@@ -141,7 +141,7 @@ class Transaction extends Base
      * Valid values are Accept or Deny
      *
      * @param string
-     * @return this
+     * @return Eden\Paypal\Transaction
      */
     public function setAction($action)
     {
@@ -156,7 +156,7 @@ class Transaction extends Base
      * Set item amount  
      *
      * @param string        Item amount
-     * @return this
+     * @return Eden\Paypal\Transaction
      */
     public function setAmount($amount)
     {
@@ -171,7 +171,7 @@ class Transaction extends Base
      * Search by credit card number  
      *
      * @param string        Credit card number
-     * @return this
+     * @return Eden\Paypal\Transaction
      */
     public function setCardNumber($cardNumber)
     {
@@ -186,7 +186,7 @@ class Transaction extends Base
      * Set currency code 
      *
      * @param string        Currency code
-     * @return this
+     * @return Eden\Paypal\Transaction
      */
     public function setCurrency($currency)
     {
@@ -201,7 +201,7 @@ class Transaction extends Base
      * Search by the buyer’s email address.
      *
      * @param string
-     * @return this
+     * @return Eden\Paypal\Transaction
      */
     public function setEmail($email)
     {
@@ -217,7 +217,7 @@ class Transaction extends Base
      * included in the search.
      *
      * @param string
-     * @return this
+     * @return Eden\Paypal\Transaction
      */
     public function setEndDate($end)
     {
@@ -230,7 +230,7 @@ class Transaction extends Base
      * Custom memo about the refund.
      *
      * @param string
-     * @return this
+     * @return Eden\Paypal\Transaction
      */
     public function setNote($note)
     {
@@ -246,7 +246,7 @@ class Transaction extends Base
      * receipt ID.
      *
      * @param string
-     * @return this
+     * @return Eden\Paypal\Transaction
      */
     public function setReceiptId($receiptId)
     {
@@ -264,7 +264,7 @@ class Transaction extends Base
      * also be a non-primary email address.
      *
      * @param string
-     * @return this
+     * @return Eden\Paypal\Transaction
      */
     public function setReceiver($receiver)
     {
@@ -283,7 +283,7 @@ class Transaction extends Base
      * Other – Other type of refund.
      *
      * @param string
-     * @return this
+     * @return Eden\Paypal\Transaction
      */
     public function setRefundType($refundType)
     {
@@ -299,7 +299,7 @@ class Transaction extends Base
      * which to start the search.
      *
      * @param string
-     * @return this
+     * @return Eden\Paypal\Transaction
      */
     public function setStartDate($start)
     {
@@ -315,7 +315,7 @@ class Transaction extends Base
      * Search by transaction status. 
      *
      * @param string        Currency code
-     * @return this
+     * @return Eden\Paypal\Transaction
      */
     public function setStatus($status)
     {
@@ -331,7 +331,7 @@ class Transaction extends Base
      * required for point-of-sale transactions.
      *
      * @param string
-     * @return this
+     * @return Eden\Paypal\Transaction
      */
     public function setStoreId($storeId)
     {
@@ -348,7 +348,7 @@ class Transaction extends Base
      * transaction records.
      *
      * @param string
-     * @return this
+     * @return Eden\Paypal\Transaction
      */
     public function setTransactionId($transactionId)
     {
