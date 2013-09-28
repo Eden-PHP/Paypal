@@ -213,7 +213,23 @@ class Checkout extends Base
             return null;
         }
         
-        return $this->getTransactionId();
+        // Get checkout details, including buyer information, call get express checkout method
+        $checkoutDetails = $this->request(self::GET_METHOD, array(self::TOKEN => $this->token));
+        
+        // Complete the checkout transaction
+        $query = array(
+           self::TOKEN => $this->token,
+           self::PAYMENT_ACTION => self::SALE,
+           self::PAYER_ID => $this->payer,
+           self::TOTAL_AMOUNT => $this->amount,         // Same amount as in the original request
+           self::CURRENCY => $this->currency);          // Same currency as the original request
+        
+        // call request method do express checckout
+        $response = $this->request(self::DO_METHOD, $query);
+        
+        // If payment successful\
+        // Fetch the transaction ID 
+        return $response;
     }
 
     /**
@@ -453,31 +469,5 @@ class Checkout extends Base
                        self::TOKEN => $this->token);   
         // call request method call back
         return $this->request(self::CALL_BACK, $query);
-    }
-    
-    /**
-     * Get Transaction ID  
-     *
-     * @return string
-     */
-    protected function getTransactionId()
-    {
-        // Get checkout details, including buyer information, call get express checkout method
-        $checkoutDetails = $this->request(self::GET_METHOD, array(self::TOKEN => $this->token));
-        
-        // Complete the checkout transaction
-        $query = array(
-           self::TOKEN => $this->token,
-           self::PAYMENT_ACTION => self::SALE,
-           self::PAYER_ID => $this->payer,
-           self::TOTAL_AMOUNT => $this->amount,         // Same amount as in the original request
-           self::CURRENCY => $this->currency);          // Same currency as the original request
-        
-        // call request method do express checckout
-        $response = $this->request(self::DO_METHOD, $query);
-        
-        // If payment successful\
-        // Fetch the transaction ID 
-        return $response;
     }
 }
