@@ -355,7 +355,8 @@ class Direct extends Base
         // do direct payment
         $response = $this->request(self::DIRECT_PAYMENT, $query);
         // if parameters are success
-        if (isset($response[self::ACK]) && $response[self::ACK] == self::SUCCESS) {
+        if (isset($response[self::ACK])
+            && $response[self::ACK] == self::SUCCESS) {
             //  Get the transaction ID
             return $response[self::TRANSACTION_ID];
         }
@@ -377,7 +378,8 @@ class Direct extends Base
         // call request method
         $response = $this->request(self::NON_REFERENCED_CREDIT, $query);
         // if parameters are success
-        if (isset($response[self::ACK]) && $response[self::ACK] == self::SUCCESS) {
+        if (isset($response[self::ACK])
+            && $response[self::ACK] == self::SUCCESS) {
             //  Get the transaction ID
             return $response[self::TRANSACTION_ID];
         }

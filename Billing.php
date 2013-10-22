@@ -67,15 +67,19 @@ class Billing extends Base
             self::RETURN_URL => $return,
             self::CANCEL_URL => $cancel,
             self::BILLING_TYPE => $this->billingType,
-            self::BILLING_DESC => $this->billingDesc,           // Description associated with the billing agreement.
-            self::PAYMENT_TYPE => $this->paymentType,           // Valid vaules are Any or InstantOnly
-            self::AGREEMENT_CUSTOM => $this->agreementCustom);  // Custom annotation field for your own use.
+            // Description associated with the billing agreement.
+            self::BILLING_DESC => $this->billingDesc,
+            // Valid vaules are Any or InstantOnly
+            self::PAYMENT_TYPE => $this->paymentType,
+            // Custom annotation field for your own use.
+            self::AGREEMENT_CUSTOM => $this->agreementCustom);
 
         // call request method
         $response = $this->request(self::SET_AGREEMENT, $query);
 
         // if parameters are success
-        if (isset($response[self::ACK]) && $response[self::ACK] == self::SUCCESS) {
+        if (isset($response[self::ACK])
+            && $response[self::ACK] == self::SUCCESS) {
             // fetch token
             $this->token = $response[self::TOKEN];
             // if token is exist and not empty

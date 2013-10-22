@@ -39,8 +39,12 @@ class Factory extends CoreBase
      * @param string API certificate file
      * @return Authorization
      */
-    public function authorization($user, $password, $signature, $certificate = null)
-    {
+    public function authorization(
+        $user,
+        $password,
+        $signature,
+        $certificate = null
+    ) {
         Argument::i()
             ->test(1, 'string')
             ->test(2, 'string')
@@ -62,8 +66,12 @@ class Factory extends CoreBase
      * @param string    API certificate file
      * @return Billing
      */
-    public function billing($user, $password, $signature, $certificate = null)
-    {
+    public function billing(
+        $user,
+        $password,
+        $signature,
+        $certificate = null
+    ) {
         if (!is_string($certificate)) {
             $certificate = dirname(__FILE__).self::PEM;
         }
@@ -79,8 +87,12 @@ class Factory extends CoreBase
      * @param string API certificate file
      * @return Button
      */
-    public function button($user, $password, $signature, $certificate = null)
-    {
+    public function button(
+        $user,
+        $password,
+        $signature,
+        $certificate = null
+    ) {
         Argument::i()
             ->test(1, 'string')
             ->test(2, 'string')
@@ -103,8 +115,12 @@ class Factory extends CoreBase
      * @param string|null API certificate file
      * @return Checkout
      */
-    public function checkout($user, $password, $signature, $certificate = null, $live = false)
-    {
+    public function checkout(
+        $user,
+        $password,
+        $signature,
+        $certificate = null
+    ) {
         Argument::i()
             ->test(1, 'string')
             ->test(2, 'string')
@@ -126,8 +142,12 @@ class Factory extends CoreBase
      * @param string API certificate file
      * @return Direct
      */
-    public function direct($user, $password, $signature, $certificate = null)
-    {
+    public function direct(
+        $user,
+        $password,
+        $signature,
+        $certificate = null
+    ) {
         Argument::i()
             ->test(1, 'string')
             ->test(2, 'string')
@@ -149,8 +169,12 @@ class Factory extends CoreBase
      * @param string API certificate file
      * @return Recurring
      */
-    public function recurring($user, $password, $signature, $certificate = null)
-    {
+    public function recurring(
+        $user,
+        $password,
+        $signature,
+        $certificate = null
+    ) {
         Argument::i()
             ->test(1, 'string')
             ->test(2, 'string')
@@ -172,8 +196,12 @@ class Factory extends CoreBase
      * @param string API certificate file
      * @return Transaction
      */
-    public function transaction($user, $password, $signature, $certificate = null)
-    {
+    public function transaction(
+        $user,
+        $password,
+        $signature,
+        $certificate = null
+    ) {
         Argument::i()
             ->test(1, 'string')
             ->test(2, 'string')

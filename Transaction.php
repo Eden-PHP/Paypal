@@ -67,6 +67,7 @@ class Transaction extends Base
         $query = array(self::TRANSACTION_ID => $this->transactionId);
         // call request method
         $response = $this->request(self::GET_DETAIL, $query);
+
         return $response;
     }
 
@@ -80,10 +81,13 @@ class Transaction extends Base
     {
         // populate fields
         $query = array(
-            self::TRANSACTION_ID => $this->transactionId,    // The transaction ID of the payment transaction.
-            self::ACTION => $this->action);                  // Valid values are Accept or Deny
+            // The transaction ID of the payment transaction.
+            self::TRANSACTION_ID => $this->transactionId,
+            // Valid values are Accept or Deny
+            self::ACTION => $this->action);
         // call request method
         $response = $this->request(self::MANAGE_STATUS, $query);
+
         return $response;
     }
 
@@ -97,12 +101,18 @@ class Transaction extends Base
     {
         // populate fields
         $query = array(
-            self::TRANSACTION_ID => $this->transactionId,   // The transaction ID of the payment transaction.
-            self::REFUND_TYPE => $this->refundType,         // Valid values are Full,Partial,ExternalDispute or Other
-            self::AMOUNT => $this->amount,                  // Refund amount.
-            self::CURRENCY => $this->currency,              // Currency code
-            self::NOTE => $this->note,                      // Custom memo about refund
-            self::STORE_ID => $this->storeId);              // ID of merchant store
+            // The transaction ID of the payment transaction.
+            self::TRANSACTION_ID => $this->transactionId,
+            // Valid values are Full,Partial,ExternalDispute or Other
+            self::REFUND_TYPE => $this->refundType,
+            // Refund amount.
+            self::AMOUNT => $this->amount,
+            // Currency code
+            self::CURRENCY => $this->currency,
+            // Custom memo about refund
+            self::NOTE => $this->note,
+            // ID of merchant store
+            self::STORE_ID => $this->storeId);
         // call request method
         $response = $this->request(self::REFUND_TRANSACTION, $query);
 
@@ -121,16 +131,26 @@ class Transaction extends Base
     {
         // populate fields
         $query = array(
-            self::START => $this->start,                    // The earliest transaction date at which to start the search
-            self::END => $this->end,                        // The latest transaction date to be included in the search.
-            self::EMAIL => $this->email,                    // Search by the buyer’s email address.
-            self::RECEIVER => $this->receiver,              // Search by the receiver’s email address.
-            self::RECEIPT_ID => $this->receiptId,           // Search by the PayPal Account Optional receipt ID.
-            self::TRANSACTION_ID => $this->transactionId,   // The transaction ID of the payment transaction.
-            self::CARD_NUMBER => $this->cardNumber,         // Search by credit card number
-            self::AMOUNT => $this->amount,                  // Search by transaction amount
-            self::CURRENCY => $this->currency,              // Search by currency code.
-            self::STATUS => $this->status);                 // Search by transaction status.
+            // The earliest transaction date at which to start the search
+            self::START => $this->start,
+            // The latest transaction date to be included in the search.
+            self::END => $this->end,
+            // Search by the buyer’s email address.
+            self::EMAIL => $this->email,
+            // Search by the receiver’s email address.
+            self::RECEIVER => $this->receiver,
+            // Search by the PayPal Account Optional receipt ID.
+            self::RECEIPT_ID => $this->receiptId,
+            // The transaction ID of the payment transaction.
+            self::TRANSACTION_ID => $this->transactionId,
+            // Search by credit card number
+            self::CARD_NUMBER => $this->cardNumber,
+            // Search by transaction amount
+            self::AMOUNT => $this->amount,
+            // Search by currency code.
+            self::CURRENCY => $this->currency,
+            // Search by transaction status.
+            self::STATUS => $this->status);
 
         // call request method
         $response = $this->request(self::SEARCH, $query);
@@ -150,6 +170,7 @@ class Transaction extends Base
         Argument::i()->test(1, 'string');
 
         $this->action = $action;
+
         return $this;
     }
 
@@ -165,6 +186,7 @@ class Transaction extends Base
         Argument::i()->test(1, 'string');
 
         $this->amount = $amount;
+
         return $this;
     }
 
@@ -180,6 +202,7 @@ class Transaction extends Base
         Argument::i()->test(1, 'string');
 
         $this->cardNumber = $cardNumber;
+
         return $this;
     }
 
@@ -195,6 +218,7 @@ class Transaction extends Base
         Argument::i()->test(1, 'string');
 
         $this->currency = $currency;
+
         return $this;
     }
 
@@ -210,6 +234,7 @@ class Transaction extends Base
         Argument::i()->test(1, 'string');
 
         $this->email = $email;
+
         return $this;
     }
 
@@ -224,6 +249,7 @@ class Transaction extends Base
     {
         $date = strtotime($end);
         $this->end = gmdate('Y-m-d\TH:i:s\Z', $date);
+
         return $this;
     }
 
@@ -239,6 +265,7 @@ class Transaction extends Base
         Argument::i()->test(1, 'string');
 
         $this->note = $note;
+
         return $this;
     }
 
@@ -255,6 +282,7 @@ class Transaction extends Base
         Argument::i()->test(1, 'string');
 
         $this->receiptId = $receiptId;
+
         return $this;
     }
 
@@ -273,6 +301,7 @@ class Transaction extends Base
         Argument::i()->test(1, 'string');
 
         $this->receiver = $receiver;
+
         return $this;
     }
 
@@ -292,6 +321,7 @@ class Transaction extends Base
         Argument::i()->test(1, 'string');
 
         $this->refundType = $refundType;
+
         return $this;
     }
 
@@ -309,6 +339,7 @@ class Transaction extends Base
 
         $date = strtotime($start);
         $this->start = gmdate('Y-m-d\TH:i:s\Z', $date);
+
         return $this;
     }
 
@@ -324,6 +355,7 @@ class Transaction extends Base
         Argument::i()->test(1, 'string');
 
         $this->status = $status;
+
         return $this;
     }
 
@@ -340,6 +372,7 @@ class Transaction extends Base
         Argument::i()->test(1, 'string');
 
         $this->storeId = $storeId;
+
         return $this;
     }
 
@@ -357,6 +390,7 @@ class Transaction extends Base
         Argument::i()->test(1, 'string');
 
         $this->transactionId = $transactionId;
+
         return $this;
     }
 }

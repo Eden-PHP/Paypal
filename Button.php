@@ -34,9 +34,9 @@ class Button extends Base
     const OPTION_SELECT = 'L_OPTIONnSELECTx';
     const OPTION_PRICE = 'L_OPTION0PRICEx';
     const OPTION_TYPE = 'OPTIONnTYPE';
-    const BILLING_PERIOD = 'L_OPTIONnBILLINGPERIOD x';
-    const BILLING_FREQUENCY = 'L_OPTIONnBILLINGPFREQUENCY x';
-    const BILING_TOTAL = 'L_OPTIONnTOTALBILLINGCYCLES x';
+    const BILLING_PERIOD = 'L_OPTIONnBILLINGPERIODx';
+    const BILLING_FREQUENCY = 'L_OPTIONnBILLINGPFREQUENCYx';
+    const BILING_TOTAL = 'L_OPTIONnTOTALBILLINGCYCLESx';
     const OPTION_AMOUNT = 'L_OPTIONnAMOUNTx';
     const SHIPPING_AMOUNT = 'L_OPTIONnSHIPPINGAMOUNTx';
     const TAX_AMOUNT = 'L_OPTIONnTAXAMOUNTx';
@@ -78,17 +78,28 @@ class Button extends Base
     {
         // populate fields
         $query = array(
-            self::BUTTON_TYPE => $this->buttonType,                  // The kind of button you want to create.
-            self::OPTION_NAME => $this->name,                        // The menu name
-            self::OPTION_SELECT => $this->select,                    // The menu item’s name
-            self::OPTION_PRICE => $this->price,                      // The price associated with the first menu item
-            self::OPTION_TYPE => $this->type,                        // The installment option type for an OPTIONnNAME
-            self::BILLING_PERIOD => $this->billingPeriod,            // The installment cycle unit
-            self::BILLING_FREQUENCY => $this->billingFrequency,      // The installment cycle frequency in units
-            self::BILLING_TOTAL => $this->billingTotal,              // The total number of billing cycles,
-            self::OPTION_AMOUNT => $this->optionAmount,              // The base amount to bill for the cycle.
-            self::SHIPPING_AMOUNT => $this->shippingAmount,          // The shipping amount to bill for the cycle
-            self::TAX_AMOUNT => $this->taxAmount);                   // The tax amount to bill for the cycle
+            // The kind of button you want to create.
+            self::BUTTON_TYPE => $this->buttonType,
+            // The menu name
+            self::OPTION_NAME => $this->name,
+            // The menu item’s name
+            self::OPTION_SELECT => $this->select,
+            // The price associated with the first menu item
+            self::OPTION_PRICE => $this->price,
+            // The installment option type for an OPTIONnNAME
+            self::OPTION_TYPE => $this->type,
+            // The installment cycle unit
+            self::BILLING_PERIOD => $this->billingPeriod,
+            // The installment cycle frequency in units
+            self::BILLING_FREQUENCY => $this->billingFrequency,
+            // The total number of billing cycles,
+            self::BILLING_TOTAL => $this->billingTotal,
+            // The base amount to bill for the cycle.
+            self::OPTION_AMOUNT => $this->optionAmount,
+            // The shipping amount to bill for the cycle
+            self::SHIPPING_AMOUNT => $this->shippingAmount,
+            // The tax amount to bill for the cycle
+            self::TAX_AMOUNT => $this->taxAmount);
 
         // call request method
         $response = $this->request(self::SET_BUTTON, $query);
@@ -133,8 +144,10 @@ class Button extends Base
     {
         // populate fields
         $query = array(
-            self::BUTTON_ID => $this->buttonId,    // The Hosted Button Id
-            self::STATUS => self::REMOVE);         // Delete the button
+            // The Hosted Button Id
+            self::BUTTON_ID => $this->buttonId,
+            // Delete the button
+            self::STATUS => self::REMOVE);
         // call request method
         $resposne =  $this->request(self::REMOVE_BUTTON, $query);
 
@@ -151,8 +164,10 @@ class Button extends Base
     {
         // populate fields
         $query = array(
-            self::START => $this->start,        // Starting date for the search.
-            self::END => $this->end);           // Ending date for the search.
+            // Starting date for the search.
+            self::START => $this->start,
+            // Ending date for the search.
+            self::END => $this->end);
         // call request method
         return $this->request(self::SEARCH, $query);
     }
@@ -510,18 +525,30 @@ class Button extends Base
     {
         // populate fields
         $query = array(
-            self::BUTTON_ID  => $this->buttonId,                // The Hosted Button Id
-            self::BUTTON_TYPE => $this->buttonType,             // The kind of button you want to create.
-            self::OPTION_NAME => $this->optionName,             // The menu name
-            self::OPTION_SELECT => $this->optionSelect,         // The menu item’s name
-            self::OPTION_PRICE => $this->optionPrice,           // The price associated with the first menu item
-            self::OPTION_TYPE => $this->optionType,             // he installment option type for an OPTIONnNAME
-            self::BILLING_PERIOD => $this->billingPeriod,       // The installment cycle unit
-            self::BILLING_FREQUENCY => $this->billingFrequency, // The installment cycle frequency in units
-            self::BILLING_TOTAL => $this->billingTotal,         // The total number of billing cycles,
-            self::OPTION_AMOUNT => $this->amount,               // The base amount to bill for the cycle.
-            self::SHIPPING_AMOUNT => $this->shippingAmount,     // The shipping amount to bill for the cycle
-            self::TAX_AMOUNT => $this->taxAmount);              // The tax amount to bill for the cycle
+            // The Hosted Button Id
+            self::BUTTON_ID  => $this->buttonId,
+            // The kind of button you want to create.
+            self::BUTTON_TYPE => $this->buttonType,
+            // The menu name
+            self::OPTION_NAME => $this->optionName,
+            // The menu item’s name
+            self::OPTION_SELECT => $this->optionSelect,
+            // The price associated with the first menu item
+            self::OPTION_PRICE => $this->optionPrice,
+            // he installment option type for an OPTIONnNAME
+            self::OPTION_TYPE => $this->optionType,
+            // The installment cycle unit
+            self::BILLING_PERIOD => $this->billingPeriod,
+            // The installment cycle frequency in units
+            self::BILLING_FREQUENCY => $this->billingFrequency,
+            // The total number of billing cycles,
+            self::BILLING_TOTAL => $this->billingTotal,
+            // The base amount to bill for the cycle.
+            self::OPTION_AMOUNT => $this->amount,
+            // The shipping amount to bill for the cycle
+            self::SHIPPING_AMOUNT => $this->shippingAmount,
+            // The tax amount to bill for the cycle
+            self::TAX_AMOUNT => $this->taxAmount);
 
         // call request method
         $response = $this->request(self::UPDATE, $query);

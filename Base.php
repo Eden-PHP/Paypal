@@ -34,8 +34,13 @@ class Base extends CoreBase
     protected $signature = null;
     protected $certificate = null;
 
-    public function __construct($user, $password, $signature, $certificate, $live = false)
-    {
+    public function __construct(
+        $user,
+        $password,
+        $signature,
+        $certificate,
+        $live = false
+    ) {
         $this->user = $user;
         $this->password = $password;
         $this->signature = $signature;
