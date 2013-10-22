@@ -17,8 +17,9 @@ use Eden\Curl\Base as Curl;
  *
  * @package Eden
  * @category Paypal
+ * @author Airon Paul Dumael airon.dumael@gmail.com
  * @author James Vincent Bion javinczki02@gmail.com
- * @author Joaquin Toral joaquintoral@gmail.com 
+ * @author Joaquin Toral joaquintoral@gmail.com
  */
 class Base extends CoreBase
 {
@@ -32,22 +33,22 @@ class Base extends CoreBase
     protected $password = null;
     protected $signature = null;
     protected $certificate = null;
-    
+
     public function __construct($user, $password, $signature, $certificate, $live = false)
     {
         $this->user = $user;
         $this->password = $password;
         $this->signature = $signature;
-        $this->certificate = $certificate;            
-        
+        $this->certificate = $certificate;
+
         $this->url = self::TEST_URL;
         $this->baseUrl = self::TEST_URL;
-        if($live) {
+        if ($live) {
             $this->url = self::LIVE_URL;
             $this->baseUrl = self::LIVE_URL;
         }
     }
-    
+
     /**
      * Populates after a request has been sent
      *
@@ -57,7 +58,36 @@ class Base extends CoreBase
     {
         return $this->meta;
     }
-    
+
+    /**
+     * Helper function for replacing n and x of fields
+     * @param  string  $string
+     * @param  boolean $n
+     * @param  boolean $x
+     * @return string
+     */
+    public function nxReplace($string, $n = false, $x = false)
+    {
+        // Argument test
+        Argument::i()
+            // Argument 1 must be string
+            ->test(1, 'string')
+            // Argument 2 must be int
+            ->test(2, 'int')
+            // Argument 3 must be int
+            ->test(3, 'int');
+
+        if ($n !== false) {
+            $string = str_replace('n', $n, $string);
+        }
+
+        if ($x !== false) {
+            $string = str_replace('x', $x, $string);
+        }
+
+        return $string;
+    }
+
     /**
      * Get Access Key
      *
@@ -66,20 +96,20 @@ class Base extends CoreBase
      */
     protected function accessKey($array)
     {
-        foreach($array as $key => $val) {
-            if(is_array($val)) {
+        foreach ($array as $key => $val) {
+            if (is_array($val)) {
                 $array[$key] = $this->accessKey($val);
             }
-            
-            if($val == false || $val == null || empty($val) || !$val) {
+
+            if ($val == false || $val == null || empty($val) || !$val) {
                 unset($array[$key]);
             }
-            
+
         }
-        
+
         return $array;
     }
-    
+
     /**
      * Request a method
      *
@@ -92,7 +122,7 @@ class Base extends CoreBase
     {
         //Argument 1 must be a string
         Argument::i()->test(1, 'string');
-        
+
         //Our request parameters
         $default = array(
             'USER' => $this->user,
@@ -100,24 +130,24 @@ class Base extends CoreBase
             'SIGNATURE' => $this->signature,
             'VERSION' => self::VERSION,
             'METHOD' => $method);
-        
+
         //generate URL-encoded query string to build our NVP string
         $query = http_build_query($query + $default);
-        
+
         $curl = Curl::i()
             ->setUrl($this->baseUrl)
             ->setVerbose(true)
             ->setCaInfo($this->certificate)
             ->setPost(true)
             ->setPostFields($query);
-            
+
         $response = $curl->getQueryResponse();
-        
+
         $this->meta['url'] = $this->baseUrl;
         $this->meta['query'] = $query;
         $this->meta['curl'] = $curl->getMeta();
         $this->meta['response'] = $response;
-        
+
         return $response;
     }
 }

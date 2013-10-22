@@ -14,8 +14,9 @@ namespace Eden\Paypal;
  *
  * @package Eden
  * @category Paypal
+ * @author Airon Paul Dumael airon.dumael@gmail.com
  * @author James Vincent Bion javinczki02@gmail.com
- * @author Joaquin Toral joaquintoral@gmail.com 
+ * @author Joaquin Toral joaquintoral@gmail.com
  */
 class Billing extends Base
 {
@@ -24,18 +25,18 @@ class Billing extends Base
     const TOKEN = 'TOKEN';
     const RETURN_URL = 'RETURNURL';
     const CANCEL_URL = 'CANCELURL';
-    
+
     const ANY = 'Any';
     const INSTANT_ONLY = 'InstantOnly';
     const ACK = 'ACK';
     const SUCCESS = 'Success';
-    
+
     const BILLING_TYPE = 'L_BILLINGTYPEn';
     const BILLING_DESC = 'L_BILLINGAGREEMENTDESCRIPTIONn';
     const PAYMENT_TYPE = 'L_PAYMENTTYPEn';
     const AGREEMENT_CUSTOM = 'L_BILLINGAGREEMENTCUSTOMn';
     const AMOUNT = 'AMT';
-        
+
     protected $token = null;
     protected $amout = null;
     protected $currency = null;
@@ -44,9 +45,9 @@ class Billing extends Base
     protected $billingDesc = null;
     protected $paymentType = null;
     protected $agreementCustom  = null;
-    
+
     /**
-     * initiates the creation of a billing agreement. 
+     * initiates the creation of a billing agreement.
      *
      * @param string        Returing URL
      * @param string        Cancel URL
@@ -60,32 +61,32 @@ class Billing extends Base
             ->test(1, 'string')
             // Argument 2 must be a string
             ->test(2, 'string');
-        
+
         // populate fields
         $query = array(
             self::RETURN_URL => $return,
             self::CANCEL_URL => $cancel,
-            self::BILLING_TYPE => $this->billingType,   
+            self::BILLING_TYPE => $this->billingType,
             self::BILLING_DESC => $this->billingDesc,           // Description associated with the billing agreement.
             self::PAYMENT_TYPE => $this->paymentType,           // Valid vaules are Any or InstantOnly
             self::AGREEMENT_CUSTOM => $this->agreementCustom);  // Custom annotation field for your own use.
-        
+
         // call request method
         $response = $this->request(self::SET_AGREEMENT, $query);
-        
+
         // if parameters are success
-        if(isset($response[self::ACK]) && $response[self::ACK] == self::SUCCESS) {
+        if (isset($response[self::ACK]) && $response[self::ACK] == self::SUCCESS) {
             // fetch token
-            $this->token = $response[self::TOKEN];  
+            $this->token = $response[self::TOKEN];
             // if token is exist and not empty
-            if($this->token) {
+            if ($this->token) {
                 return $this->getAgreement();
             }
-        } 
-        
-        return $response;   
+        }
+
+        return $response;
     }
-    
+
     /**
      * Custom annotation field for your own use.
      *
@@ -97,13 +98,13 @@ class Billing extends Base
     {
         // Argument 1 must be a string
         Argument::i()->test(1, 'string');
-        
+
         $this->agreementCustom = $agreementCustom;
         return $this;
     }
-    
+
     /**
-     * Description of goods or services associated 
+     * Description of goods or services associated
      * with the billing agreement.
      *
      * @param string
@@ -113,14 +114,14 @@ class Billing extends Base
     {
         // Argument 1 must be a string
         Argument::i()->test(1, 'string');
-        
+
         $this->billingDesc = $billingDesc;
         return $this;
     }
-    
+
     /**
      * Set billing type
-     * 
+     *
      * @param string
      * @return Eden\Paypal\Billing
      */
@@ -128,11 +129,11 @@ class Billing extends Base
     {
         // Argument 1 must be a string
         Argument::i()->test(1, 'string');
-        
+
         $this->billingType = $billingType;
         return $this;
     }
-    
+
     /**
      * Set payment type to Any
      *
@@ -144,7 +145,7 @@ class Billing extends Base
         $this->paymentType = self::ANY;
         return $this;
     }
-    
+
     /**
      * Set payment type to Instant Only
      *
@@ -156,7 +157,7 @@ class Billing extends Base
         $this->paymentType = self::INSTANT_ONLY;
         return $this;
     }
-    
+
     /**
      * Get Agreement
      *

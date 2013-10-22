@@ -14,6 +14,7 @@ namespace Eden\Paypal;
  *
  * @package Eden
  * @category Paypal
+ * @author Airon Paul Dumael airon.dumael@gmail.com
  * @author James Vincent Bion javinczki02@gmail.com
  * @author Joaquin Toral joaquintoral@gmail.com
  */
@@ -23,10 +24,10 @@ class Authorization extends Base
     const DO_CAPTURE = 'DoCapture';
     const DO_REAUTHORIZATION = 'DoReauthorization';
     const DO_VOID = 'DoVoid';
-    
+
     const TRANSACTION_ID = 'TRANSACTIONID';
     const AUTHORIZATION_ID = 'AUTHORIZATIONID';
-    
+
     const ENTITY = 'TRANSACTIONENTITY';
     const ORDER    = 'Order';
     const ACK = 'ACK';
@@ -37,15 +38,15 @@ class Authorization extends Base
     const COMPLETE = 'COMPLETE';
     const NO_COMPLETE = 'NoComplete';
     const NOTE = 'NOTE';
-    
+
     protected $amount = null;
     protected $currency = null;
     protected $completeType = null;
     protected $note = null;
     protected $transactionId = null;
-    
+
     /**
-     * Authorize a payment. 
+     * Authorize a payment.
      *
      * @return string
      */
@@ -60,16 +61,16 @@ class Authorization extends Base
         // call request method
         $response = $this->request(self::DO_AUTHORIZATION, $query);
         // if parameters are success
-        if(isset($response[self::ACK]) && $response[self::ACK] == self::SUCCESS) {
-           // Get the transaction Id
-           return $response[self::TRANSACTION_ID];
-        } 
-        
-        return $response;    
+        if (isset($response[self::ACK]) && $response[self::ACK] == self::SUCCESS) {
+            // Get the transaction Id
+            return $response[self::TRANSACTION_ID];
+        }
+
+        return $response;
     }
-    
+
     /**
-     * Captures an authorized payment. 
+     * Captures an authorized payment.
      *
      * @return string
      */
@@ -82,20 +83,20 @@ class Authorization extends Base
             self::CURRENCY => $this->currency,                // currency code, default is USD
             self::COMPLETE_TYPE => $this->completeType,       // Valid values are Complete or    NotComplete
             self::NOTE => $this->note);                       // An informational note about the settlement
-            
+
         // call request method
         $response = $this->request(self::DO_CAPTURE, $query);
         // if parameters are success
-        if(isset($response[self::ACK]) && $response[self::ACK] == self::SUCCESS) {
-           //  Get the authorization Id
-           return $response[self::AUTHORIZATION_ID];
-        } 
-        
-        return $response;    
+        if (isset($response[self::ACK]) && $response[self::ACK] == self::SUCCESS) {
+            //  Get the authorization Id
+            return $response[self::AUTHORIZATION_ID];
+        }
+
+        return $response;
     }
-    
+
     /**
-     * Re-authorize a payment. 
+     * Re-authorize a payment.
      *
      * @return string
      */
@@ -109,16 +110,16 @@ class Authorization extends Base
         // call request method
         $response = $this->request(self::DO_REAUTHORIZATION, $query);
         // if parameters are success
-        if(isset($response[self::ACK]) && $response[self::ACK] == self::SUCCESS) {
-           // Get the authorization ID 
-           return $response[self::AUTHORIZATION_ID];       
-        } 
-        
-        return $response;    
+        if (isset($response[self::ACK]) && $response[self::ACK] == self::SUCCESS) {
+            // Get the authorization ID
+            return $response[self::AUTHORIZATION_ID];
+        }
+
+        return $response;
     }
-    
+
     /**
-     * Void an order or an authorization. 
+     * Void an order or an authorization.
      *
      * @return string
      */
@@ -131,16 +132,16 @@ class Authorization extends Base
         // call request method
         $response = $this->request(self::DO_VOID, $query);
         // if parameters are success
-        if(isset($response[self::ACK]) && $response[self::ACK] == self::SUCCESS) {
-           // Get the authorization ID 
-           return $response[self::AUTHORIZATION_ID];       
-        } 
-        
-        return $response;    
+        if (isset($response[self::ACK]) && $response[self::ACK] == self::SUCCESS) {
+            // Get the authorization ID
+            return $response[self::AUTHORIZATION_ID];
+        }
+
+        return $response;
     }
-    
+
     /**
-     * Set item amount  
+     * Set item amount
      *
      * @param integer|float Item amount
      * @return Eden\Paypal\Authorization
@@ -148,12 +149,12 @@ class Authorization extends Base
     public function setAmount($amount)
     {
         // Argument 1 must be an integer or float
-        Argument::i()->test(1, 'int', 'float');    
-        
+        Argument::i()->test(1, 'int', 'float');
+
         $this->amount = $amount;
         return $this;
     }
-    
+
     /**
      * Set complete type to complete
      * Complete - This the last capture you intend to make
@@ -165,9 +166,9 @@ class Authorization extends Base
         $this->completeType = self::COMPLETE;
         return $this;
     }
-    
+
     /**
-     * Set currency code 
+     * Set currency code
      *
      * @param string Currency code
      * @return Eden\Paypal\Authorization
@@ -175,12 +176,12 @@ class Authorization extends Base
     public function setCurrency($currency)
     {
         // Argument 1 must be a string
-        Argument::i()->test(1, 'string');    
-        
+        Argument::i()->test(1, 'string');
+
         $this->currency = $currency;
         return $this;
     }
-    
+
     /**
      * Set complete type to no complete
      * NoComplete - You intend to make additional captures.
@@ -192,10 +193,10 @@ class Authorization extends Base
         $this->completeType = self::NO_COMPLETE;
         return $this;
     }
-    
+
     /**
-     * An informational note about this settlement that 
-     * is displayed to the buyer in email and in their 
+     * An informational note about this settlement that
+     * is displayed to the buyer in email and in their
      * transaction history.
      *
      * @param string
@@ -204,12 +205,12 @@ class Authorization extends Base
     public function setNote($note)
     {
         // Argument 1 must be a string
-        Argument::i()->test(1, 'string');    
-        
+        Argument::i()->test(1, 'string');
+
         $this->note = $note;
         return $this;
     }
-    
+
     /**
      * Set Transaction Id
      *
@@ -219,8 +220,8 @@ class Authorization extends Base
     public function setTransactionId($transactionId)
     {
         // Argument 1 must be a string
-        Argument::i()->test(1, 'string');    
-        
+        Argument::i()->test(1, 'string');
+
         $this->transactionId = $transactionId;
         return $this;
     }

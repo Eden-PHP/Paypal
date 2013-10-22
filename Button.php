@@ -14,8 +14,9 @@ namespace Eden\Paypal;
  *
  * @package Eden
  * @category Paypal
+ * @author Airon Paul Dumael airon.dumael@gmail.com
  * @author James Vincent Bion javinczki02@gmail.com
- * @author Joaquin Toral joaquintoral@gmail.com 
+ * @author Joaquin Toral joaquintoral@gmail.com
  */
 class Button extends Base
 {
@@ -25,10 +26,10 @@ class Button extends Base
     const GET_INVENTORY = 'BMGetInventory';
     const REMOVE_BUTTON = 'BMManageButtonStatus';
     const UPDATE_BUTTON = 'BMUpdateButton';
-    
+
     const BUTTON_ID  = 'HOSTEDBUTTONID';
     const REMOVE = 'DELETE';
-    
+
     const OPTION_NAME = 'OPTIONnNAME';
     const OPTION_SELECT = 'L_OPTIONnSELECTx';
     const OPTION_PRICE = 'L_OPTION0PRICEx';
@@ -38,21 +39,21 @@ class Button extends Base
     const BILING_TOTAL = 'L_OPTIONnTOTALBILLINGCYCLES x';
     const OPTION_AMOUNT = 'L_OPTIONnAMOUNTx';
     const SHIPPING_AMOUNT = 'L_OPTIONnSHIPPINGAMOUNTx';
-    const TAX_AMOUNT = 'L_OPTIONnTAXAMOUNTx';    
+    const TAX_AMOUNT = 'L_OPTIONnTAXAMOUNTx';
     const START = 'STARTDATE';
     const END = 'ENDDATE';
-    
+
     const BUY_NOW = 'BUYNOW';
-    const CART = 'CART';        
+    const CART = 'CART';
     const GIFT_CERTIFICATE = 'GIFTCERTIFICATE';
-    const SUBSCRIBE = 'SUBSCRIBE';    
-    const DONATE = 'DONATE';    
+    const SUBSCRIBE = 'SUBSCRIBE';
+    const DONATE = 'DONATE';
     const UNSUBSCRIBE = 'UNSUBSCRIBE';
-    const VIEW_CART = 'VIEWCART';            
-    const PAYMENT_PLAN = 'PAYMENTPLAN';    
+    const VIEW_CART = 'VIEWCART';
+    const PAYMENT_PLAN = 'PAYMENTPLAN';
     const AUTOBILLING = 'AUTOBILLING';
     const PAYMENT = 'PAYMENT';
-        
+
     protected $buttonId = null;
     protected $start = null;
     protected $end = null;
@@ -67,7 +68,7 @@ class Button extends Base
     protected $optionAmount = null;
     protected $shippingAmount = null;
     protected $taxAmount = null;
-    
+
     /**
      * Initiates the creation of a billing agreement.
      *
@@ -86,28 +87,28 @@ class Button extends Base
             self::BILLING_FREQUENCY => $this->billingFrequency,      // The installment cycle frequency in units
             self::BILLING_TOTAL => $this->billingTotal,              // The total number of billing cycles,
             self::OPTION_AMOUNT => $this->optionAmount,              // The base amount to bill for the cycle.
-            self::SHIPPING_AMOUNt => $this->shippingAmount,          // The shipping amount to bill for the cycle
+            self::SHIPPING_AMOUNT => $this->shippingAmount,          // The shipping amount to bill for the cycle
             self::TAX_AMOUNT => $this->taxAmount);                   // The tax amount to bill for the cycle
-        
+
         // call request method
         $response = $this->request(self::SET_BUTTON, $query);
         // if parameters are success
-        if(isset($response[self::BUTTON_ID])) {
-            //  Get the button ID 
-            $this->buttonId = $response[self::BUTTON_ID];       
+        if (isset($response[self::BUTTON_ID])) {
+            //  Get the button ID
+            $this->buttonId = $response[self::BUTTON_ID];
             // call get button detail method
             return $this->request(self::GET_BUTTON, $query);
         }
-        
+
         return $response;
     }
-    
+
     /**
-     * Determine the inventory levels and other 
-     * inventory-related information for a button 
-     * and menu items associated with the button. 
-     * Typically, you call BMGetInventory to obtain 
-     * field values before calling BMSetInventory 
+     * Determine the inventory levels and other
+     * inventory-related information for a button
+     * and menu items associated with the button.
+     * Typically, you call BMGetInventory to obtain
+     * field values before calling BMSetInventory
      * to change the inventory levels.
      *
      * @return string
@@ -118,12 +119,12 @@ class Button extends Base
         $query = array(self::BUTTON_ID => $this->buttonId);
         // call request method
         $resposne =  $this->request(self::GET_INVENTORY, $query);
-        
+
         return $response;
     }
-    
+
     /**
-     * Change the status of a hosted button. 
+     * Change the status of a hosted button.
      * Currently, you can only delete a button.
      *
      * @return string
@@ -136,10 +137,10 @@ class Button extends Base
             self::STATUS => self::REMOVE);         // Delete the button
         // call request method
         $resposne =  $this->request(self::REMOVE_BUTTON, $query);
-        
+
         return $response;
     }
-    
+
     /**
      * Obtain a list of your hosted Website
      * Payments Standard buttons.
@@ -150,12 +151,12 @@ class Button extends Base
     {
         // populate fields
         $query = array(
-            self::START => $this->start,        // Starting date for the search.  
-            self::END => $this->end);           // Ending date for the search.             
+            self::START => $this->start,        // Starting date for the search.
+            self::END => $this->end);           // Ending date for the search.
         // call request method
         return $this->request(self::SEARCH, $query);
     }
-    
+
     /**
      * The base amount to bill for the cycle.
      *
@@ -165,17 +166,17 @@ class Button extends Base
     public function setAmount($amount)
     {
         // Argument 1 must be a string
-        Argument::i()->test(1, 'string');    
-        
+        Argument::i()->test(1, 'string');
+
         $this->amount = $amount;
         return $this;
     }
-    
+
     /**
-     * The installment cycle frequency in units, 
-     * e.g. if the billing frequency is 2 and the 
-     * billing period is Month, the billing cycle 
-     * is every 2 months. The default billing 
+     * The installment cycle frequency in units,
+     * e.g. if the billing frequency is 2 and the
+     * billing period is Month, the billing cycle
+     * is every 2 months. The default billing
      * frequency is 1.
      *
      * @param string
@@ -184,12 +185,12 @@ class Button extends Base
     public function setBillingFrequency($billingFrequency)
     {
         // Argument 1 must be a string
-        Argument::i()->test(1, 'int');    
-        
+        Argument::i()->test(1, 'int');
+
         $this->billingFrequency = $billingFrequency;
         return $this;
     }
-    
+
     /**
      * Valid values are
      * NoBillingPeriodType - None (default)
@@ -205,14 +206,14 @@ class Button extends Base
     public function setBillingPeriod($billingPeriod)
     {
         // Argument 1 must be a string
-        Argument::i()->test(1, 'string');    
-        
+        Argument::i()->test(1, 'string');
+
         $this->billingPeriod = $billingPeriod;
         return $this;
     }
-    
+
     /**
-     * The total number of billing cycles, regardless of 
+     * The total number of billing cycles, regardless of
      * the duration of a cycle; 1 is the default
      *
      * @param string
@@ -221,12 +222,12 @@ class Button extends Base
     public function setBillingTotal($billingTotal)
     {
         // Argument 1 must be a string
-        Argument::i()->test(1, 'int');    
-        
+        Argument::i()->test(1, 'int');
+
         $this->billingTotal = $billingTotal;
         return $this;
     }
-    
+
     /**
      * Set hosted button id
      *
@@ -236,12 +237,12 @@ class Button extends Base
     public function setButtonId($setbuttonId)
     {
         // Argument 1 must be a string
-        Argument::i()->test(1, 'string');    
-        
-        $this->setbuttonId = setbuttonId;
+        Argument::i()->test(1, 'string');
+
+        $this->setbuttonId = $setbuttonId;
         return $this;
     }
-    
+
     /**
      * Ending date for the search.
      * The value must be in UTC/GMT format
@@ -252,17 +253,17 @@ class Button extends Base
     public function setEndDate($end)
     {
         // Argument 1 must be a string
-        Argument::i()->test(1, 'string');    
-        
+        Argument::i()->test(1, 'string');
+
         $date = strtotime($end);
         $this->end = gmdate('Y-m-d\TH:i:s\Z', $date);
         return $this;
     }
-    
+
     /**
      * It is one or more variables, in which n is a
-     * digit between 0 and 4, inclusive, for hosted 
-     * buttons; otherwise, it is a digit between 0 
+     * digit between 0 and 4, inclusive, for hosted
+     * buttons; otherwise, it is a digit between 0
      * and 9, inclusive
      *
      * @param string
@@ -271,32 +272,32 @@ class Button extends Base
     public function setName($name)
     {
         // Argument 1 must be a string
-        Argument::i()->test(1, 'string');    
-        
+        Argument::i()->test(1, 'string');
+
         $this->name = $name;
         return $this;
     }
-    
+
     /**
-     * It is a list of variables for each OPTIONnNAME, 
+     * It is a list of variables for each OPTIONnNAME,
      * in which x is a digit between 0 and 9, inclusive
      *
      * @param string
      * @return Eden\Paypal\Button
-     * @note If you specify a price, you cannot set 
+     * @note If you specify a price, you cannot set
      * a button variable to amount.
      */
     public function setOptionPrice($optionPrice)
     {
         // Argument 1 must be a string
-        Argument::i()->test(1, 'string');    
-        
+        Argument::i()->test(1, 'string');
+
         $this->optionPrice = $optionPrice;
         return $this;
     }
-    
+
     /**
-     * It is a list of variables for each OPTIONnNAME, 
+     * It is a list of variables for each OPTIONnNAME,
      * in which x is a digit between 0 and 9, inclusive
      *
      * @param string
@@ -305,14 +306,14 @@ class Button extends Base
     public function setOptionSelect($optionSelect)
     {
         // Argument 1 must be a string
-        Argument::i()->test(1, 'string');    
-        
+        Argument::i()->test(1, 'string');
+
         $this->optionSelect = $optionSelect;
         return $this;
     }
-    
+
     /**
-     * The shipping amount to bill for the cycle, 
+     * The shipping amount to bill for the cycle,
      * in addition to the base amount.
      *
      * @param string
@@ -321,14 +322,14 @@ class Button extends Base
     public function setShippingAmount($shippingAmount)
     {
         // Argument 1 must be a string
-        Argument::i()->test(1, 'string');    
-        
+        Argument::i()->test(1, 'string');
+
         $this->shippingAmount = $shippingAmount;
         return $this;
     }
-    
+
     /**
-     * Starting date for the search. 
+     * Starting date for the search.
      * The value must be in UTC/GMT format
      *
      * @param string
@@ -337,15 +338,15 @@ class Button extends Base
     public function setStartDate($start)
     {
         // Argument 1 must be a string
-        Argument::i()->test(1, 'string');    
-        
+        Argument::i()->test(1, 'string');
+
         $date = strtotime($start);
         $this->start = gmdate('Y-m-d\TH:i:s\Z', $date);
         return $this;
     }
-    
+
     /**
-     * The tax amount to bill for the cycle, 
+     * The tax amount to bill for the cycle,
      * in addition to the base amount.
      *
      * @param string
@@ -354,12 +355,12 @@ class Button extends Base
     public function setTaxAmount($taxAmount)
     {
         // Argument 1 must be a string
-        Argument::i()->test(1, 'string');    
-        
+        Argument::i()->test(1, 'string');
+
         $this->taxAmount = $taxAmount;
         return $this;
     }
-    
+
     /**
      * Set button type to Autobilling
      *
@@ -370,7 +371,7 @@ class Button extends Base
         $this->buttonType = self::AUTOBILLING;
         return $this;
     }
-    
+
     /**
      * Set button type to buy now
      *
@@ -381,7 +382,7 @@ class Button extends Base
         $this->buttonType = self::BUY_NOW;
         return $this;
     }
-    
+
     /**
      * Set button type to CART
      *
@@ -392,7 +393,7 @@ class Button extends Base
         $this->buttonType = self::CART;
         return $this;
     }
-    
+
     /**
      * Set button type to Donate
      *
@@ -403,7 +404,7 @@ class Button extends Base
         $this->buttonType = self::DONATE;
         return $this;
     }
-    
+
     /**
      * Set button type to Gift Certificate
      *
@@ -414,7 +415,7 @@ class Button extends Base
         $this->buttonType = self::GIFT_CERTIFICATE;
         return $this;
     }
-    
+
     /**
      * Set button type to Payment
      *
@@ -425,7 +426,7 @@ class Button extends Base
         $this->buttonType = self::PAYMENT;
         return $this;
     }
-    
+
     /**
      * Set button type to Payment Plan
      *
@@ -436,7 +437,7 @@ class Button extends Base
         $this->buttonType = self::PAYMENT_PLAN;
         return $this;
     }
-    
+
     /**
      * Set button type to Subscribe
      *
@@ -447,7 +448,7 @@ class Button extends Base
         $this->buttonType = self::SUBSCRIBE;
         return $this;
     }
-    
+
     /**
      * Set button type to UnSubscribe
      *
@@ -458,7 +459,7 @@ class Button extends Base
         $this->buttonType = self::UNSUBSCRIBE;
         return $this;
     }
-    
+
     /**
      * Set button type to View Cart
      *
@@ -469,7 +470,7 @@ class Button extends Base
         $this->buttonType = self::VIEW_CART;
         return $this;
     }
-    
+
     /**
      * Valid values are
      * FULL        - Payment in full
@@ -484,7 +485,7 @@ class Button extends Base
         $this->type = $tType;
         return $this;
     }
-    
+
     /**
      * Valid values are
      * FULL        - Payment in full
@@ -499,7 +500,7 @@ class Button extends Base
         $this->optionType = 'FULL';
         return $this;
     }
-    
+
     /**
      * Updates the an agreeement
      *
@@ -519,19 +520,19 @@ class Button extends Base
             self::BILLING_FREQUENCY => $this->billingFrequency, // The installment cycle frequency in units
             self::BILLING_TOTAL => $this->billingTotal,         // The total number of billing cycles,
             self::OPTION_AMOUNT => $this->amount,               // The base amount to bill for the cycle.
-            self::SHIPPING_AMOUNt => $this->shippingAmount,     // The shipping amount to bill for the cycle
+            self::SHIPPING_AMOUNT => $this->shippingAmount,     // The shipping amount to bill for the cycle
             self::TAX_AMOUNT => $this->taxAmount);              // The tax amount to bill for the cycle
-        
+
         // call request method
         $response = $this->request(self::UPDATE, $query);
         // if parameters are success
-        if(isset($response[self::BUTTON_ID])) {
-            // Get the button ID 
-            $this->buttonId =  $response[self::BUTTON_ID];       
+        if (isset($response[self::BUTTON_ID])) {
+            // Get the button ID
+            $this->buttonId =  $response[self::BUTTON_ID];
             // call get button detail method
             return $this->getButton;
-        } 
-        
+        }
+
         return $response;
     }
 }
