@@ -48,20 +48,25 @@ class Authorization extends Base
     /**
      * Authorize a payment.
      *
-     * @return string
+     * @return array
      */
     public function doAuthorization()
     {
         // populate fields
         $query = array(
             self::TRANSACTION_ID => $this->transactionId,
-            self::AMOUNT => $this->amount,                    // amount of the payment
-            self::ENTITY => self::ORDER,                      // Type of transaction to authorize
-            self::CURRENCY => $this->currency);               // currency code, default is USD
+            // amount of the payment
+            self::AMOUNT => $this->amount,
+            // Type of transaction to authorize
+            self::ENTITY => self::ORDER,
+            // currency code, default is USD
+            self::CURRENCY => $this->currency);
+
         // call request method
         $response = $this->request(self::DO_AUTHORIZATION, $query);
         // if parameters are success
-        if (isset($response[self::ACK]) && $response[self::ACK] == self::SUCCESS) {
+        if (isset($response[self::ACK])
+            && $response[self::ACK] == self::SUCCESS) {
             // Get the transaction Id
             return $response[self::TRANSACTION_ID];
         }
@@ -78,16 +83,22 @@ class Authorization extends Base
     {
         // populate fields
         $query = array(
-            self::AUTHORIZATION_ID => $this->transactionId,   // Transaction Id
-            self::AMOUNT => $this->amount,                    // amount of the payment
-            self::CURRENCY => $this->currency,                // currency code, default is USD
-            self::COMPLETE_TYPE => $this->completeType,       // Valid values are Complete or    NotComplete
-            self::NOTE => $this->note);                       // An informational note about the settlement
+            // Transaction Id
+            self::AUTHORIZATION_ID => $this->transactionId,
+            // amount of the payment
+            self::AMOUNT => $this->amount,
+            // currency code, default is USD
+            self::CURRENCY => $this->currency,
+            // Valid values are Complete or    NotComplete
+            self::COMPLETE_TYPE => $this->completeType,
+            // An informational note about the settlement
+            self::NOTE => $this->note);
 
         // call request method
         $response = $this->request(self::DO_CAPTURE, $query);
         // if parameters are success
-        if (isset($response[self::ACK]) && $response[self::ACK] == self::SUCCESS) {
+        if (isset($response[self::ACK])
+            && $response[self::ACK] == self::SUCCESS) {
             //  Get the authorization Id
             return $response[self::AUTHORIZATION_ID];
         }
@@ -105,8 +116,10 @@ class Authorization extends Base
         // populate fields
         $query = array(
             self::AUTHORIZATION_ID => $this->transactionId,
-            self::AMOUNT => $this->amount,                    // amount of the payment
-            self::CURRENCY => $this->currency);               // currency code, default is USD
+            // amount of the payment
+            self::AMOUNT => $this->amount,
+            // currency code, default is USD
+            self::CURRENCY => $this->currency);
         // call request method
         $response = $this->request(self::DO_REAUTHORIZATION, $query);
         // if parameters are success
@@ -128,11 +141,13 @@ class Authorization extends Base
         // populate fields
         $query = array(
             self::AUTHORIZATION_ID => $this->transactionId,
-            self::NOTE => $this->note);                    // An informational note about the settlement
+            // An informational note about the settlement
+            self::NOTE => $this->note);
         // call request method
         $response = $this->request(self::DO_VOID, $query);
         // if parameters are success
-        if (isset($response[self::ACK]) && $response[self::ACK] == self::SUCCESS) {
+        if (isset($response[self::ACK])
+            && $response[self::ACK] == self::SUCCESS) {
             // Get the authorization ID
             return $response[self::AUTHORIZATION_ID];
         }
