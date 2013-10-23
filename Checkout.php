@@ -186,10 +186,7 @@ class Checkout extends Base
             self::STREET    => $this->street,
             self::ZIP       => $this->zip);
 
-        // call request method address verify
-        $response = $this->request(self::DO_ADDRESS_VERIFY, $query);
-
-        return $response;
+        return $this->request(self::DO_ADDRESS_VERIFY, $query);
     }
 
     /**
@@ -199,11 +196,9 @@ class Checkout extends Base
      */
     public function doMassPayment()
     {
-
         $query = array();
         $query = array_merge($query, $this->getQueries());
 
-        // call request method call back
         return $this->request(self::MASS_PAYMENT, $query);
     }
 
@@ -217,7 +212,6 @@ class Checkout extends Base
         //  Indicates whether to return all currencies.
         $query = array(self::RETURN_CURRENCIES  => $this->currencies);
 
-        // call request method call back
         return $this->request(self::GET_BALANCE, $query);
     }
 
@@ -310,7 +304,7 @@ class Checkout extends Base
         // call request method do express checckout
         $response = $this->request(self::DO_METHOD, $query);
 
-        // If payment successful\
+        // If payment successful
         // Fetch the transaction ID
         return $response;
     }
@@ -384,8 +378,8 @@ class Checkout extends Base
     /**
      * Set currrency
      *
-     * @param string        Currency code
-     * @param  int
+     * @param string Currency code
+     * @param int
      * @return Eden\Paypal\Checkout
      */
     public function setCurrency($currency, $n = 0)
@@ -403,9 +397,9 @@ class Checkout extends Base
      * Set sales tax.
      * Sum of tax for all items in this order.
      *
-     * @param  int|float tax amount
-     * @param  int
-     * @return  Eden\Paypal\Checkout
+     * @param int|float tax amount
+     * @param int
+     * @return Eden\Paypal\Checkout
      */
     public function setTaxAmount($taxAmount, $n = 0)
     {
@@ -440,8 +434,8 @@ class Checkout extends Base
      * Your own invoice or tracking number
      *
      * @param string
-     * @param  int
-     * @return  Eden\Paypal\Checkout
+     * @param int
+     * @return Eden\Paypal\Checkout
      */
     public function setInvoice($invoiceNumber, $n = 0)
     {
@@ -459,8 +453,8 @@ class Checkout extends Base
      * about this transaction.
      *
      * @param string
-     * @param  int
-     * @return  Eden\Paypal\Checkout
+     * @param int
+     * @return Eden\Paypal\Checkout
      */
     public function setNotifyUrl($notifyUrl, $n = 0)
     {
@@ -479,7 +473,7 @@ class Checkout extends Base
      *
      * @param int
      * @param int
-     * @return  Eden\Paypal\Checkout
+     * @return Eden\Paypal\Checkout
      */
     public function setMultiShipping($multiShipping, $n = 0)
     {
@@ -496,8 +490,8 @@ class Checkout extends Base
      * Note to the merchant.
      *
      * @param string
-     * @param  int
-     * @return  Eden\Paypal\Checkout
+     * @param int
+     * @return Eden\Paypal\Checkout
      */
     public function setNoteText($noteText, $n = 0)
     {
@@ -515,8 +509,8 @@ class Checkout extends Base
      * to the buyer's credit card statement.
      *
      * @param string
-     * @param  int
-     * @return  Eden\Paypal\Checkout
+     * @param int
+     * @return Eden\Paypal\Checkout
      */
     public function setSoftDescriptor($softDescriptor, $n = 0)
     {
@@ -533,8 +527,8 @@ class Checkout extends Base
      * Transaction identification number of the transaction that was created.
      *
      * @param string
-     * @param  int
-     * @return  Eden\Paypal\Checkout
+     * @param int
+     * @return Eden\Paypal\Checkout
      */
     public function setTransactionId($transactionId, $n = 0)
     {
@@ -551,8 +545,8 @@ class Checkout extends Base
      * Transaction identification number of the transaction that was created.
      *
      * @param string
-     * @param  int
-     * @return  Eden\Paypal\Checkout
+     * @param int
+     * @return Eden\Paypal\Checkout
      */
     public function setAllowedPaymentMethod($allowedPaymentMethod, $n = 0)
     {
@@ -577,8 +571,8 @@ class Checkout extends Base
      *         with PayPal Authorization and Capture.
      *
      * @param string
-     * @param  int
-     * @return  Eden\Paypal\Checkout
+     * @param int
+     * @return Eden\Paypal\Checkout
      */
     public function setPaymentAction($paymentAction, $n = 0)
     {
@@ -595,8 +589,8 @@ class Checkout extends Base
      * Sum of cost of all items in this order.
      *
      * @param int|float
-     * @param  int
-     * @return  Eden\Paypal\Checkout
+     * @param int
+     * @return Eden\Paypal\Checkout
      */
     public function setOrderAmount($totalAmount, $n = 0)
     {
@@ -613,8 +607,8 @@ class Checkout extends Base
      * A unique identifier of the specific payment request.
      *
      * @param string
-     * @param  int
-     * @return  Eden\Paypal\Checkout
+     * @param int
+     * @return Eden\Paypal\Checkout
      */
     public function setRequestId($requestId, $n = 0)
     {
@@ -631,8 +625,8 @@ class Checkout extends Base
      * A unique identifier of the specific payment request.
      *
      * @param string
-     * @param  int
-     * @return  Eden\Paypal\Checkout
+     * @param int
+     * @return Eden\Paypal\Checkout
      */
     public function setSellerId($sellerId, $n = 0)
     {
@@ -649,8 +643,8 @@ class Checkout extends Base
      * Current name of the merchant or business at the marketplace site.
      *
      * @param string
-     * @param  int
-     * @return  Eden\Paypal\Checkout
+     * @param int
+     * @return Eden\Paypal\Checkout
      */
     public function setSellerUsername($sellerUsername, $n = 0)
     {
@@ -667,8 +661,8 @@ class Checkout extends Base
      * Date when the merchant registered with the marketplace.
      *
      * @param string
-     * @param  int
-     * @return  Eden\Paypal\Checkout
+     * @param int
+     * @return Eden\Paypal\Checkout
      */
     public function setSellerRegistrationdate($sellerRegistrationdate, $n = 0)
     {
@@ -686,7 +680,7 @@ class Checkout extends Base
      * Yes or No
      *
      * @param string
-     * @return  Eden\Paypal\Checkout
+     * @return Eden\Paypal\Checkout
      */
     public function setInsuranceOptionSelected($insuranceOptionSelected)
     {
@@ -702,7 +696,7 @@ class Checkout extends Base
      * True or False
      *
      * @param bool
-     * @return  Eden\Paypal\Checkout
+     * @return Eden\Paypal\Checkout
      */
     public function setShippingOptionIsDefault($shippingOptionIsDefault)
     {
@@ -718,7 +712,7 @@ class Checkout extends Base
      * Must have 2 decimal places.
      *
      * @param float
-     * @return  Eden\Paypal\Checkout
+     * @return Eden\Paypal\Checkout
      */
     public function setShippingOptionAmount($shippingOptionAmount)
     {
@@ -733,7 +727,7 @@ class Checkout extends Base
      * The name of the shipping option, such as air or ground.
      *
      * @param string
-     * @return  Eden\Paypal\Checkout
+     * @return Eden\Paypal\Checkout
      */
     public function setShippingOptionName($shippingOptionName)
     {
@@ -780,7 +774,7 @@ class Checkout extends Base
      * Set shipping amount of the item
      *
      * @param int or float      Shipping amount of the item
-     * @param  int
+     * @param int
      * @return Eden\Paypal\Checkout
      */
     public function setShippingAmount($shippingAmount, $n = 0)
@@ -878,8 +872,8 @@ class Checkout extends Base
     /**
      * get fields
      *
-     * @param  string
-     * @param  string
+     * @param string
+     * @param string
      * @return array
      */
     protected function getFields($fieldName, $data)
@@ -911,7 +905,7 @@ class Checkout extends Base
     /**
      * get items
      *
-     * @return  array
+     * @return array
      */
     protected function getItems()
     {
