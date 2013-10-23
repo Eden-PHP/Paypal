@@ -22,8 +22,6 @@ use Eden\Core\Base as CoreBase;
  * @package Eden
  * @category Paypal
  * @author Airon Paul Dumael airon.dumael@gmail.com
- * @author James Vincent Bion javinczki02@gmail.com
- * @author Joaquin Toral joaquintoral@gmail.com
  */
 class Factory extends CoreBase
 {
