@@ -140,15 +140,15 @@ class Base extends CoreBase
         $curl = Curl::i()
             ->setUrl($this->baseUrl)
             ->setVerbose(true)
-            ->setCaInfo($this->certificate)
+            // ->setCaInfo($this->certificate)
             ->setPost(true)
             ->setPostFields($query);
 
         $response = $curl->getQueryResponse();
 
-        $this->meta['url'] = $this->baseUrl;
-        $this->meta['query'] = $query;
-        $this->meta['curl'] = $curl->getMeta();
+        $this->meta['url']      = $this->baseUrl;
+        $this->meta['query']    = $query;
+        $this->meta['curl']     = $curl->getMeta();
         $this->meta['response'] = $response;
 
         return $response;

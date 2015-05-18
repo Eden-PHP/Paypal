@@ -117,13 +117,15 @@ class Factory extends CoreBase
         $user,
         $password,
         $signature,
-        $certificate = null
+        $certificate = null,
+        $live = false
     ) {
         Argument::i()
             ->test(1, 'string')
             ->test(2, 'string')
             ->test(3, 'string')
-            ->test(4, 'string', 'null');
+            ->test(4, 'string', 'null')
+            ->test(5, 'bool', 'null');
 
         if (!is_string($certificate)) {
             $certificate = dirname(__FILE__).self::PEM;
