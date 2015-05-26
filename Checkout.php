@@ -40,6 +40,9 @@ class Checkout extends Base
     const CANCEL_URL = 'CANCELURL';
     const TOTAL_AMOUNT = 'PAYMENTREQUEST_n_AMT';
     const SHIPPING_AMOUNT = 'PAYMENTREQUEST_n_SHIPPINGAMT';
+    const SHIPPING_DISCOUNT_AMOUNT = 'PAYMENTREQUEST_n_SHIPDISCAMT';
+    const INSURANCE_AMOUNT = 'PAYMENTREQUEST_n_INSURANCEAMT';
+    const HANDLING_TOTAL = 'PAYMENTREQUEST_n_HANDLINGAMT';
     const CURRENCY = 'PAYMENTREQUEST_n_CURRENCYCODE';
     const TAX_AMOUNT = 'PAYMENTREQUEST_n_TAXAMT';
     const DESCRIPTION = 'PAYMENTREQUEST_n_DESC';
@@ -95,6 +98,9 @@ class Checkout extends Base
 
     protected $amount = array();
     protected $shippingAmount = array();
+    protected $shippingDiscountAmount = array();
+    protected $insuranceAmount = array();
+    protected $handlingAmount = array();
     protected $currency = array();
     protected $taxAmount = array();
     protected $description = array();
@@ -787,6 +793,57 @@ class Checkout extends Base
     }
 
     /**
+     * Set shipping discount amount.
+     *
+     * @param   int | float
+     * @param   int
+     * @return  Eden\Paypal\Checkout
+     */
+    public function setShippingDiscountAmount($discountAmount, $n = 0) {
+        Argument::i()
+            ->test(1, 'int', 'float')
+            ->test(2, 'int');
+
+        $this->shippingDiscountAmount[$n] = $discountAmount;
+
+        return $this;
+    }
+
+    /**
+     * Set insurance amount
+     *
+     * @param   int | float
+     * @param   int
+     * @return  Eden\Paypal\Checkout
+     */
+    public function setInsuranceAmount($insuranceAmount, $n = 0) {
+        Argument::i()
+            ->test(1, 'int', 'float')
+            ->test(2, 'int');
+
+        $this->insuranceAmount[$n] = $insuranceAmount;
+
+        return $this;
+    }
+
+    /**
+     * Set handling total
+     *
+     * @param   int | float
+     * @param   int
+     * @return  Eden\Paypal\Checkout
+     */
+    public function setHandlingAmount($handlingAmount, $n = 0) {
+        Argument::i()
+            ->test(1, 'int', 'float')
+            ->test(2, 'int');
+
+        $this->handlingAmount[$n] = $handlingAmount;
+
+        return $this;
+    }
+
+    /**
      * Set consumer street
      *
      * @param string        consumer street
@@ -1119,6 +1176,21 @@ class Checkout extends Base
         $query = array_merge($query, $this->getFields(
             self::SHIPPING_AMOUNT,
             $this->shippingAmount
+        ));
+
+        $query = array_merge($query, $this->getFields(
+            self::SHIPPING_DISCOUNT_AMOUNT,
+            $this->shippingDiscountAmount
+        ));
+
+        $query = array_merge($query, $this->getFields(
+            self::INSURANCE_AMOUNT,
+            $this->insuranceAmount
+        ));
+
+        $query = array_merge($query, $this->getFields(
+            self::HANDLING_TOTAL,
+            $this->handlingAmount
         ));
 
         $query = array_merge($query, $this->getFields(
