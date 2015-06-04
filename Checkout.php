@@ -251,8 +251,8 @@ class Checkout extends Base
             ->test(2, 'string');
 
         $query = array(
-            // 'PAYMENTREQUEST_0_PAYMENTACTION' => 'Authorization',
-            // self::SOLUTION_TYPE => $this->solutionType,
+            'PAYMENTREQUEST_0_PAYMENTACTION' => 'Sale',
+            self::SOLUTION_TYPE => $this->solutionType,
             self::RETURN_URL => $return,
             self::CANCEL_URL => $cancel);
 
@@ -291,26 +291,23 @@ class Checkout extends Base
 
         // Get checkout details, including buyer information,
         // call get express checkout method
-        $checkoutDetails = $this->request(
-            self::GET_METHOD,
-            array(self::TOKEN => $this->token)
+        $checkoutDetails = $this->request(self::GET_METHOD, array(self::TOKEN => $this->token));
+
+        $this->paymentAction[0] = self::SALE;
+
+        $query = array(
+           self::TOKEN => $this->token,
+           self::PAYER_ID => $this->payer,
         );
 
-        // $this->paymentAction[0] = self::SALE;
-
-        // $query = array(
-        //    self::TOKEN => $this->token,
-        //    self::PAYER_ID => $this->payer,
-        // );
-
-        // $query = array_merge($query, $this->getQueries());
+        $query = array_merge($query, $this->getQueries());
 
         // call request method do express checckout
-        // $response = $this->request(self::DO_METHOD, $query);
+        $response = $this->request(self::DO_METHOD, $query);
 
         // If payment successful
         // Fetch the transaction ID
-        return $checkoutDetails;
+        return $response;
     }
 
     /**
@@ -357,12 +354,12 @@ class Checkout extends Base
      * @param string
      * @return Eden\Paypal\Checkout
      */
-    public function setSolutionType($solutioType = 'Sole')
+    public function setSolutionType($solutionType = 'Sole')
     {
         // Argument 1 must be an string
         Argument::i()->test(1, 'string');
 
-        $this->solutionType = $solutioType;
+        $this->solutionType = $solutionType;
 
         return $this;
     }
