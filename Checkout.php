@@ -296,21 +296,21 @@ class Checkout extends Base
             array(self::TOKEN => $this->token)
         );
 
-        $this->paymentAction[0] = self::SALE;
+        // $this->paymentAction[0] = self::SALE;
 
-        $query = array(
-           self::TOKEN => $this->token,
-           self::PAYER_ID => $this->payer,
-           );
+        // $query = array(
+        //    self::TOKEN => $this->token,
+        //    self::PAYER_ID => $this->payer,
+        // );
 
-        $query = array_merge($query, $this->getQueries());
+        // $query = array_merge($query, $this->getQueries());
 
         // call request method do express checckout
-        $response = $this->request(self::DO_METHOD, $query);
+        // $response = $this->request(self::DO_METHOD, $query);
 
         // If payment successful
         // Fetch the transaction ID
-        return $response;
+        return $checkoutDetails;
     }
 
     /**
