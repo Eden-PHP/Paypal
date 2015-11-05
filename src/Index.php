@@ -1,41 +1,44 @@
 <?php //-->
-/*
- * This file is part of the Paypal package of the Eden PHP Library.
- * (c) 2013-2014 Openovate Labs
+/**
+ * This file is part of the Eden PHP Library.
+ * (c) 2014-2016 Openovate Labs
  *
- * Copyright and license information can be found at LICENSE
+ * Copyright and license information can be found at LICENSE.txt
  * distributed with this package.
  */
 
 namespace Eden\Paypal;
 
-use Eden\Core\Base as CoreBase;
-
 /**
- * Paypal API factory. This is a factory class with
- * methods that will load up different Paypal API methods.
- * Paypal classes are organized as described on their
- * developer site: Express Checkout, Transaction,
- * Authorization, Direct Payment, Recurring Payment,
- * Button Manager and Billing Agreement
+ * Factory Class
  *
- * @package Eden
- * @category Paypal
- * @author Airon Paul Dumael airon.dumael@gmail.com
+ * @vendor   Eden
+ * @package  Paypal
+ * @author   Christian Blanquera <cblanquera@openovate.com>
+ * @author   Airon Paul Dumael <airon.dumael@gmail.com>
+ * @standard PSR-2
  */
-class Factory extends CoreBase
+class Index extends \Eden\Core\Base
 {
-    const PEM = '/paypal/cacert.pem';
+    /**
+     * @const int INSTANCE Flag that designates singleton when using ::i()
+     */
     const INSTANCE = 1;
-
+    
+    /**
+     * @const int PEM Location of the PEM file
+     */
+    const PEM = '/paypal/cacert.pem';
+    
     /**
      * Returns paypal authorization
      *
-     * @param string API username
-     * @param string API password
-     * @param string API signature
-     * @param string API certificate file
-     * @return Authorization
+     * @param string*     $user        User ID
+     * @param string*     $password    User password
+     * @param string*     $signature   PayPal REST signature
+     * @param string|null $certificate Location of the certificate file
+     *
+     * @return Eden\Paypal\Authorization
      */
     public function authorization(
         $user,
@@ -54,15 +57,16 @@ class Factory extends CoreBase
         }
         return Authorization::i($user, $password, $signature, $certificate);
     }
-
+    
     /**
      * Returns paypal billing
      *
-     * @param string    API username
-     * @param string    API password
-     * @param string    API signature
-     * @param string    API certificate file
-     * @return Billing
+     * @param string*     $user        User ID
+     * @param string*     $password    User password
+     * @param string*     $signature   PayPal REST signature
+     * @param string|null $certificate Location of the certificate file
+     *
+     * @return Eden\Paypal\Billing
      */
     public function billing(
         $user,
@@ -75,15 +79,16 @@ class Factory extends CoreBase
         }
         return Billing::i($user, $password, $signature, $certificate);
     }
-
+    
     /**
      * Returns paypal button
      *
-     * @param string API username
-     * @param string API password
-     * @param string API signature
-     * @param string API certificate file
-     * @return Button
+     * @param string*     $user        User ID
+     * @param string*     $password    User password
+     * @param string*     $signature   PayPal REST signature
+     * @param string|null $certificate Location of the certificate file
+     *
+     * @return Eden\Paypal\Button
      */
     public function button(
         $user,
@@ -106,12 +111,13 @@ class Factory extends CoreBase
     /**
      * Returns paypal express checkout
      *
-     * @param string
-     * @param string API username
-     * @param string API password
-     * @param string API signature
-     * @param string|null API certificate file
-     * @return Checkout
+     * @param string*     $user        User ID
+     * @param string*     $password    User password
+     * @param string*     $signature   PayPal REST signature
+     * @param string|null $certificate Location of the certificate file
+     * @param bool        $live        Flag ofor whether to use the live URL or not
+     *
+     * @return Eden\Paypal\Checkout
      */
     public function checkout(
         $user,
@@ -136,11 +142,12 @@ class Factory extends CoreBase
     /**
      * Returns paypal directPayment
      *
-     * @param string API username
-     * @param string API password
-     * @param string API signature
-     * @param string API certificate file
-     * @return Direct
+     * @param string*     $user        User ID
+     * @param string*     $password    User password
+     * @param string*     $signature   PayPal REST signature
+     * @param string|null $certificate Location of the certificate file
+     *
+     * @return Eden\Paypal\Direct
      */
     public function direct(
         $user,
@@ -163,11 +170,12 @@ class Factory extends CoreBase
     /**
      * Returns paypal recurringPayment
      *
-     * @param string API username
-     * @param string API password
-     * @param string API signature
-     * @param string API certificate file
-     * @return Recurring
+     * @param string*     $user        User ID
+     * @param string*     $password    User password
+     * @param string*     $signature   PayPal REST signature
+     * @param string|null $certificate Location of the certificate file
+     *
+     * @return Eden\Paypal\Recurring
      */
     public function recurring(
         $user,
@@ -190,11 +198,12 @@ class Factory extends CoreBase
     /**
      * Returns paypal transaction
      *
-     * @param string API username
-     * @param string API password
-     * @param string API signature
-     * @param string API certificate file
-     * @return Transaction
+     * @param string*     $user        User ID
+     * @param string*     $password    User password
+     * @param string*     $signature   PayPal REST signature
+     * @param string|null $certificate Location of the certificate file
+     *
+     * @return Eden\Paypal\Transaction
      */
     public function transaction(
         $user,

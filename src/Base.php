@@ -1,37 +1,84 @@
 <?php //-->
-/*
- * This file is part of the Paypal package of the Eden PHP Library.
- * (c) 2013-2014 Openovate Labs
+/**
+ * This file is part of the Eden PHP Library.
+ * (c) 2014-2016 Openovate Labs
  *
- * Copyright and license information can be found at LICENSE
+ * Copyright and license information can be found at LICENSE.txt
  * distributed with this package.
  */
 
 namespace Eden\Paypal;
 
-use Eden\Core\Base as CoreBase;
-use Eden\Curl\Base as Curl;
+use Eden\Curl\Index as Curl;
 
 /**
- * Paypal Base
+ * Base Class
  *
- * @package Eden
- * @category Paypal
- * @author Airon Paul Dumael airon.dumael@gmail.com
+ * @vendor   Eden
+ * @package  Paypal
+ * @author   Christian Blanquera <cblanquera@openovate.com>
+ * @author   Airon Paul Dumael <airon.dumael@gmail.com>
+ * @standard PSR-2
  */
-class Base extends CoreBase
+class Base extends \Eden\Core\Base
 {
+    /**
+     * @const string VERSION PayPal version
+     */
     const VERSION = '84.0';
+
+    /**
+     * @const string TEST_URL
+     */
     const TEST_URL = 'https://api-3t.sandbox.paypal.com/nvp';
+
+    /**
+     * @const string LIVE_URL
+     */
     const LIVE_URL = 'https://api-3t.paypal.com/nvp';
+
+    /**
+     * @const string SANDBOX_URL
+     */
     const SANDBOX_URL = 'https://test.authorize.net/gateway/transact.dll';
+
+    /**
+     * @var array $meta Request/response meta data
+     */
     protected $meta = array();
+
+    /**
+     * @var string|null $url API url call
+     */
     protected $url = null;
+
+    /**
+     * @var string|null $user user id
+     */
     protected $user = null;
+
+    /**
+     * @var string|null $password user password
+     */
     protected $password = null;
+
+    /**
+     * @var string|null $signature PayPal REST signature
+     */
     protected $signature = null;
     protected $certificate = null;
 
+    /**
+     * Save required fields, determine the root url to use
+     *
+     * @param string* $user        User ID
+     * @param string* $password    User password
+     * @param string* $signature   PayPal REST signature
+     * @param string* $certificate Location of the certificate file
+     * @param bool    $live        Flag ofor whether to use the live URL or not
+     *
+     * @return void
+     */
     public function __construct(
         $user,
         $password,
@@ -64,9 +111,10 @@ class Base extends CoreBase
 
     /**
      * Helper function for replacing n and x of fields
-     * @param  string  $string
-     * @param  boolean $n
-     * @param  boolean $x
+     * @param  string*  $string
+     * @param  bool     $n
+     * @param  bool     $x
+     *
      * @return string
      */
     public function nxReplace($string, $n = false, $x = false)
@@ -94,10 +142,11 @@ class Base extends CoreBase
     /**
      * Get Access Key
      *
-     * @param array
+     * @param array* $array
+     *
      * @return array
      */
-    protected function accessKey($array)
+    protected function accessKey(array $array)
     {
         foreach ($array as $key => $val) {
             if (is_array($val)) {
@@ -116,9 +165,10 @@ class Base extends CoreBase
     /**
      * Request a method
      *
-     * @param string
-     * @param array
-     * @param boolean
+     * @param string* $method
+     * @param array   $query
+     * @param bool    $post
+     *
      * @return string
      */
     protected function request($method, array $query = array(), $post = true)

@@ -1,74 +1,227 @@
 <?php // -->
-/*
- * This file is part of the Paypal package of the Eden PHP Library.
- * (c) 2013-2014 Openovate Labs
+/**
+ * This file is part of the Eden PHP Library.
+ * (c) 2014-2016 Openovate Labs
  *
- * Copyright and license information can be found at LICENSE
+ * Copyright and license information can be found at LICENSE.txt
  * distributed with this package.
  */
 
 namespace Eden\Paypal;
 
 /**
- * Paypal Website Payments Pro - Direct Payment
+ * Website Payments Standard - Button Manager
  *
- * @package Eden
- * @category Paypal
- * @author Airon Paul Dumael airon.dumael@gmail.com
+ * @vendor   Eden
+ * @package  Paypal
+ * @author   Christian Blanquera <cblanquera@openovate.com>
+ * @author   Airon Paul Dumael <airon.dumael@gmail.com>
+ * @standard PSR-2
  */
 class Direct extends Base
 {
+    /**
+     * @const string DIRECT_PAYMENT
+     */
     const DIRECT_PAYMENT = 'DoDirectPayment';
-    const NON_REFERENCED_CREDIT = 'DoNonReferencedCredit';
-
-    const TRANSACTION_ID = 'TRANSACTIONID';
-    const SALE = 'sale';
-    const ACK = 'ACK';
-    const SUCCESS = 'Success';
-    const REMOTE_ADDRESS = 'REMOTE_ADDR';
-    const IP_ADDRESS = 'IPADDRESS';
-    const PAYMENT_ACTION = 'PAYMENTACTION';
-
-    const CARD_TYPE = 'CREDITCARDTYPE';
-    const CARD_NUMBER = 'ACCT';
-    const EXPIRATION_DATE = 'EXPDATE'   ;
-    const CVV = 'CVV2';
-    const FIRST_NAME = 'FIRSTNAME';
-    const LAST_NAME = 'LASTNAME';
-    const EMAIL = 'EMAIL';
-    const COUNTRY_CODE = 'COUNTRYCODE';
-    const STATE = 'STATE';
-    const CITY = 'CITY';
-    const STREET = 'STREET';
-    const ZIP = 'ZIP';
-    const AMOUNT = 'AMT';
-    const CURRENCY = 'CURRENCYCODE';
-
-    protected $nonReferencedCredit = false;
-
-    protected $profileId = null;
-    protected $cardType = null;
-    protected $cardNumber = null;
-    protected $expirationDate = null;
-    protected $cvv2 = null;
-    protected $firstName = null;
-    protected $lastName = null;
-    protected $email = null;
-    protected $countryCode = null;
-    protected $state = null;
-    protected $city = null;
-    protected $street = null;
-    protected $zip = null;
-    protected $amout = null;
-    protected $currency = null;
 
     /**
-     * Process a credit card direct payment
-     *
-     * @return string
-     * @note Contact PayPal to use DoNonReferencedCredit
+     * @const string NON_REFERENCED_CREDIT
+     */
+    const NON_REFERENCED_CREDIT = 'DoNonReferencedCredit';
+
+    /**
+     * @const string TRANSACTION_ID
+     */
+    const TRANSACTION_ID = 'TRANSACTIONID';
+
+    /**
+     * @const string SALE
+     */
+    const SALE = 'sale';
+
+    /**
+     * @const string ACK
+     */
+    const ACK = 'ACK';
+
+    /**
+     * @const string SUCCESS
+     */
+    const SUCCESS = 'Success';
+
+    /**
+     * @const string REMOTE_ADDRESS
+     */
+    const REMOTE_ADDRESS = 'REMOTE_ADDR';
+
+    /**
+     * @const string IP_ADDRESS
+     */
+    const IP_ADDRESS = 'IPADDRESS';
+
+    /**
+     * @const string PAYMENT_ACTION
+     */
+    const PAYMENT_ACTION = 'PAYMENTACTION';
+
+    /**
+     * @const string CARD_TYPE
+     */
+    const CARD_TYPE = 'CREDITCARDTYPE';
+
+    /**
+     * @const string CARD_NUMBER
+     */
+    const CARD_NUMBER = 'ACCT';
+
+    /**
+     * @const string EXPIRATION_DATE
+     */
+    const EXPIRATION_DATE = 'EXPDATE'   ;
+
+    /**
+     * @const string CVV
+     */
+    const CVV = 'CVV2';
+
+    /**
+     * @const string FIRST_NAME
+     */
+    const FIRST_NAME = 'FIRSTNAME';
+
+    /**
+     * @const string LAST_NAME
+     */
+    const LAST_NAME = 'LASTNAME';
+
+    /**
+     * @const string EMAIL
+     */
+    const EMAIL = 'EMAIL';
+
+    /**
+     * @const string COUNTRY_CODE
+     */
+    const COUNTRY_CODE = 'COUNTRYCODE';
+
+    /**
+     * @const string STATE
+     */
+    const STATE = 'STATE';
+
+    /**
+     * @const string CITY
+     */
+    const CITY = 'CITY';
+
+    /**
+     * @const string STREET
+     */
+    const STREET = 'STREET';
+
+    /**
+     * @const string ZIP
+     */
+    const ZIP = 'ZIP';
+
+    /**
+     * @const string AMOUNT
+     */
+    const AMOUNT = 'AMT';
+
+    /**
+     * @const string CURRENCY
+     */
+    const CURRENCY = 'CURRENCYCODE';
+
+    /**
+     * @var bool $nonReferencedCredit
+     */
+    protected $nonReferencedCredit = false;
+
+    /**
+     * @var string|null $profileId
+     */
+    protected $profileId= null;
+
+    /**
+     * @var string|null $cardType
+     */
+    protected $cardType= null;
+
+    /**
+     * @var string|null $cardNumber
+     */
+    protected $cardNumber= null;
+
+    /**
+     * @var string|null $expirationDate
+     */
+    protected $expirationDate= null;
+
+    /**
+     * @var string|null $cvv2
+     */
+    protected $cvv2= null;
+
+    /**
+     * @var string|null $firstName
+     */
+    protected $firstName= null;
+
+    /**
+     * @var string|null $lastName
+     */
+    protected $lastName= null;
+
+    /**
+     * @var string|null $email
+     */
+    protected $email= null;
+
+    /**
+     * @var string|null $countryCode
+     */
+    protected $countryCode= null;
+
+    /**
+     * @var string|null $state
+     */
+    protected $state= null;
+
+    /**
+     * @var string|null $city
+     */
+    protected $city= null;
+
+    /**
+     * @var string|null $street
+     */
+    protected $street= null;
+
+    /**
+     * @var string|null $zip
+     */
+    protected $zip= null;
+
+    /**
+     * @var string|null $amout
+     */
+    protected $amout= null;
+
+    /**
+     * @var string|null $currency
+     */
+    protected $currency= null;
+
+    /**
+     * Process a credit card direct payment.
+     * Contact PayPal to use DoNonReferencedCredit
      * API operation, in most cases, you should use the
      * RefundTransaction API operation instead.
+     *
+     * @return string
      */
     public function getResponse()
     {
@@ -120,7 +273,8 @@ class Direct extends Base
     /**
      * Set item amount
      *
-     * @param integer or float      Item amount
+     * @param int|float* $amount Item amount
+     *
      * @return Eden\Paypal\Direct
      */
     public function setAmount($amount)
@@ -135,7 +289,8 @@ class Direct extends Base
     /**
      * Set credit card number
      *
-     * @param string        Credit card number
+     * @param string* $cardNumber Credit card number
+     *
      * @return Eden\Paypal\Direct
      */
     public function setCardNumber($cardNumber)
@@ -150,7 +305,8 @@ class Direct extends Base
     /**
      * Set credit card type
      *
-     * @param string        Credit card type
+     * @param string* $cardType Credit card type
+     *
      * @return Eden\Paypal\Direct
      */
     public function setCardType($cardType)
@@ -165,7 +321,8 @@ class Direct extends Base
     /**
      * Set cardholder city
      *
-     * @param string        City
+     * @param string* $city City
+     *
      * @return Eden\Paypal\Direct
      */
     public function setCity($city)
@@ -180,7 +337,8 @@ class Direct extends Base
     /**
      * Set cardholder country code
      *
-     * @param string        Country Code
+     * @param string* $countryCode Country Code
+     *
      * @return Eden\Paypal\Direct
      */
     public function setCountryCode($countryCode)
@@ -195,7 +353,8 @@ class Direct extends Base
     /**
      * Set currency code
      *
-     * @param string        Currency code
+     * @param string* $currency Currency code
+     *
      * @return Eden\Paypal\Direct
      */
     public function setCurrency($currency)
@@ -210,7 +369,8 @@ class Direct extends Base
     /**
      * Set Card Verification Value
      *
-     * @param string        3 - digit cvv number
+     * @param string* $cvv2 3 - digit cvv number
+     *
      * @return Eden\Paypal\Direct
      */
     public function setCvv2($cvv2)
@@ -225,7 +385,8 @@ class Direct extends Base
     /**
      * Set cardholder email address
      *
-     * @param string        Email address
+     * @param string* $email Email address
+     *
      * @return Eden\Paypal\Direct
      */
     public function setEmail($email)
@@ -240,7 +401,8 @@ class Direct extends Base
     /**
      * Set credit card expiration date
      *
-     * @param string        Credit card expiration date
+     * @param string* $expirationDate Credit card expiration date
+     *
      * @return Eden\Paypal\Direct
      */
     public function setExpirationDate($expirationDate)
@@ -255,7 +417,8 @@ class Direct extends Base
     /**
      * Set cardholder first name
      *
-     * @param string        First name
+     * @param string* $firstName First name
+     *
      * @return Eden\Paypal\Direct
      */
     public function setFirstName($firstName)
@@ -270,7 +433,8 @@ class Direct extends Base
     /**
      * Set cardholder last name
      *
-     * @param string        Last name
+     * @param string* $lastName Last name
+     *
      * @return Eden\Paypal\Direct
      */
     public function setLastName($lastName)
@@ -297,7 +461,8 @@ class Direct extends Base
     /**
      * Set cardholder state
      *
-     * @param string        State
+     * @param string* $state State
+     *
      * @return Eden\Paypal\Direct
      */
     public function setState($state)
@@ -312,7 +477,8 @@ class Direct extends Base
     /**
      * Set cardholder street
      *
-     * @param string        Street
+     * @param string* $street Street
+     *
      * @return Eden\Paypal\Direct
      */
     public function setStreet($street)
@@ -327,7 +493,8 @@ class Direct extends Base
     /**
      * Set cardholder zip code
      *
-     * @param string        Zip code
+     * @param string* $zip Zip code
+     *
      * @return Eden\Paypal\Direct
      */
     public function setZip($zip)
@@ -342,7 +509,8 @@ class Direct extends Base
     /**
      * Set direct payment
      *
-     * @param array
+     * @param array* $query
+     *
      * @return number
      */
     protected function setDirectPayment($query)
@@ -365,7 +533,8 @@ class Direct extends Base
     /**
      * Set non-referenced Credit
      *
-     * @param array|string
+     * @param array|string* $query
+     *
      * @return number
      */
     protected function setNonReferencedCredit($query)

@@ -1,9 +1,9 @@
 <?php //-->
-/*
- * This file is part of the Paypal package of the Eden PHP Library.
- * (c) 2013-2014 Openovate Labs
+/**
+ * This file is part of the Eden PHP Library.
+ * (c) 2014-2016 Openovate Labs
  *
- * Copyright and license information can be found at LICENSE
+ * Copyright and license information can be found at LICENSE.txt
  * distributed with this package.
  */
 
@@ -12,35 +12,117 @@ namespace Eden\Paypal;
 /**
  * Paypal Website Payments Pro - Authorization and Capture
  *
- * @package Eden
- * @category Paypal
- * @author Airon Paul Dumael airon.dumael@gmail.com
+ * @vendor   Eden
+ * @package  Paypal
+ * @author   Christian Blanquera <cblanquera@openovate.com>
+ * @author   Airon Paul Dumael <airon.dumael@gmail.com>
+ * @standard PSR-2
  */
 class Authorization extends Base
 {
+    /**
+     * @const string DO_AUTHORIZATION
+     */
     const DO_AUTHORIZATION = 'DoAuthorization';
+
+    /**
+     * @const string DO_CAPTURE
+     */
     const DO_CAPTURE = 'DoCapture';
+
+    /**
+     * @const string DO_REAUTHORIZATION
+     */
     const DO_REAUTHORIZATION = 'DoReauthorization';
+
+    /**
+     * @const string DO_VOID
+     */
     const DO_VOID = 'DoVoid';
 
+    /**
+     * @const string TRANSACTION_ID
+     */
     const TRANSACTION_ID = 'TRANSACTIONID';
+
+    /**
+     * @const string AUTHORIZATION_ID
+     */
     const AUTHORIZATION_ID = 'AUTHORIZATIONID';
 
+    /**
+     * @const string ENTITY
+     */
     const ENTITY = 'TRANSACTIONENTITY';
+
+    /**
+     * @const string ORDER
+     */
     const ORDER    = 'Order';
+
+    /**
+     * @const string ACK
+     */
     const ACK = 'ACK';
+
+    /**
+     * @const string SUCCESS
+     */
     const SUCCESS = 'Success';
+
+    /**
+     * @const string AMOUNT
+     */
     const AMOUNT = 'AMT';
+
+    /**
+     * @const string CURRENCY
+     */
     const CURRENCY = 'CURRENCYCODE';
+
+    /**
+     * @const string COMPLETE_TYPE
+     */
     const COMPLETE_TYPE = 'COMPLETETYPE';
+
+    /**
+     * @const string COMPLETE
+     */
     const COMPLETE = 'COMPLETE';
+
+    /**
+     * @const string NO_COMPLETE
+     */
     const NO_COMPLETE = 'NoComplete';
+
+    /**
+     * @const string NOTE
+     */
     const NOTE = 'NOTE';
 
+    /**
+     * @var string|null $amount
+     */
     protected $amount = null;
+
+    /**
+     * @var string|null $currency
+     */
     protected $currency = null;
+
+    /**
+     * @var string|null $completeType
+     */
     protected $completeType = null;
+
+    /**
+     * @var string|null $note
+     */
     protected $note = null;
+
+    /**
+     * @var string|null $transactionId
+     */
     protected $transactionId = null;
 
     /**
@@ -156,7 +238,8 @@ class Authorization extends Base
     /**
      * Set item amount
      *
-     * @param integer|float Item amount
+     * @param int|float* $amount Item amount
+     *
      * @return Eden\Paypal\Authorization
      */
     public function setAmount($amount)
@@ -183,7 +266,8 @@ class Authorization extends Base
     /**
      * Set currency code
      *
-     * @param string Currency code
+     * @param string* $currency Currency code
+     *
      * @return Eden\Paypal\Authorization
      */
     public function setCurrency($currency)
@@ -212,7 +296,8 @@ class Authorization extends Base
      * is displayed to the buyer in email and in their
      * transaction history.
      *
-     * @param string
+     * @param string* $note
+     *
      * @return Eden\Paypal\Authorization
      */
     public function setNote($note)
@@ -227,7 +312,8 @@ class Authorization extends Base
     /**
      * Set Transaction Id
      *
-     * @param string
+     * @param string* $transactionId
+     *
      * @return Eden\Paypal\Authorization
      */
     public function setTransactionId($transactionId)

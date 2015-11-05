@@ -1,83 +1,299 @@
 <?php //-->
-/*
- * This file is part of the Paypal package of the Eden PHP Library.
- * (c) 2013-2014 Openovate Labs
+/**
+ * This file is part of the Eden PHP Library.
+ * (c) 2014-2016 Openovate Labs
  *
- * Copyright and license information can be found at LICENSE
+ * Copyright and license information can be found at LICENSE.txt
  * distributed with this package.
  */
 
 namespace Eden\Paypal;
 
 /**
- * Paypal Website Payments Pro - Recurring Payment
+ * Website Payments Standard - Button Manager
  *
- * @package Eden
- * @category Paypal
- * @author Airon Paul Dumael airon.dumael@gmail.com
+ * @vendor   Eden
+ * @package  Paypal
+ * @author   Christian Blanquera <cblanquera@openovate.com>
+ * @author   Airon Paul Dumael <airon.dumael@gmail.com>
+ * @standard PSR-2
  */
 class Recurring extends Base
 {
+    /**
+     * @const string RECURRING_PAYMENT
+     */
     const RECURRING_PAYMENT = 'CreateRecurringPaymentsProfile';
+
+    /**
+     * @const string GET_DETAIL
+     */
     const GET_DETAIL = 'GetRecurringPaymentsProfileDetails';
+
+    /**
+     * @const string MANAGE_STATUS
+     */
     const MANAGE_STATUS = 'ManageRecurringPaymentsProfileStatus';
+
+    /**
+     * @const string BILL_AMOUNT
+     */
     const BILL_AMOUNT = 'BillOutstandingAmount';
+
+    /**
+     * @const string PROFILE_ID
+     */
     const PROFILE_ID = 'PROFILEID';
 
+    /**
+     * @const string SALE
+     */
     const SALE = 'sale';
+
+    /**
+     * @const string ACK
+     */
     const ACK = 'ACK';
+
+    /**
+     * @const string SUCCESS
+     */
     const SUCCESS = 'Success';
+
+    /**
+     * @const string ERROR
+     */
     const ERROR = 'L_LONGMESSAGE0';
+
+    /**
+     * @const string REMOTE_ADDRESS
+     */
     const REMOTE_ADDRESS = 'REMOTE_ADDR';
+
+    /**
+     * @const string IP_ADDRESS
+     */
     const IP_ADDRESS = 'IPADDRESS';
+
+    /**
+     * @const string PAYMENT_ACTION
+     */
     const PAYMENT_ACTION = 'PAYMENTACTION';
 
+    /**
+     * @const string DAY
+     */
     const DAY = 'Day';
+
+    /**
+     * @const string WEEK
+     */
     const WEEK = 'Week';
+
+    /**
+     * @const string SEMI_MONTH
+     */
     const SEMI_MONTH = 'SemiMonth';
+
+    /**
+     * @const string MONTH
+     */
     const MONTH = 'Month';
+
+    /**
+     * @const string YEAR
+     */
     const YEAR = 'Year';
+
+    /**
+     * @const string CANCEL
+     */
     const CANCEL = 'Cancel';
+
+    /**
+     * @const string SUSPEND
+     */
     const SUSPEND = 'Suspend';
+
+    /**
+     * @const string REACTIVATE
+     */
     const REACTIVATE = 'Reactivate';
 
+    /**
+     * @const string CARD_TYPE
+     */
     const CARD_TYPE = 'CREDITCARDTYPE';
+
+    /**
+     * @const string CARD_NUMBER
+     */
     const CARD_NUMBER = 'ACCT';
+
+    /**
+     * @const string EXPIRATION_DATE
+     */
     const EXPIRATION_DATE = 'EXPDATE';
+
+    /**
+     * @const string CVV
+     */
     const CVV = 'CVV2';
+
+    /**
+     * @const string FIRST_NAME
+     */
     const FIRST_NAME = 'FIRSTNAME';
+
+    /**
+     * @const string LAST_NAME
+     */
     const LAST_NAME = 'LASTNAME';
+
+    /**
+     * @const string EMAIL
+     */
     const EMAIL = 'EMAIL';
+
+    /**
+     * @const string COUNTRY_CODE
+     */
     const COUNTRY_CODE = 'COUNTRYCODE';
+
+    /**
+     * @const string STATE
+     */
     const STATE = 'STATE';
+
+    /**
+     * @const string CITY
+     */
     const CITY = 'CITY';
+
+    /**
+     * @const string STREET
+     */
     const STREET = 'STREET';
+
+    /**
+     * @const string ZIP
+     */
     const ZIP = 'ZIP';
+
+    /**
+     * @const string AMOUNT
+     */
     const AMOUNT = 'AMT';
+
+    /**
+     * @const string CURRENCY
+     */
     const CURRENCY = 'CURRENCYCODE';
+
+    /**
+     * @const string DESCRIPTION
+     */
     const DESCRIPTION = 'DESC';
+
+    /**
+     * @const string START_DATE
+     */
     const START_DATE = 'PROFILESTARTDATE';
+
+    /**
+     * @const string BILLING_PERIOD
+     */
     const BILLING_PERIOD = 'BILLINGPERIOD';
+
+    /**
+     * @const string BILLING_FREQUENCY
+     */
     const BILLING_FREQUENCY = 'BILLINGFREQUENCY';
 
+    /**
+     * @var string|null $profileId
+     */
+    protected $profileId= null;
 
-    protected $profileId = null;
-    protected $cardType = null;
-    protected $cardNumber = null;
-    protected $expirationDate = null;
-    protected $cvv2 = null;
-    protected $firstName = null;
-    protected $lastName = null;
-    protected $email = null;
-    protected $countryCode = null;
-    protected $state = null;
-    protected $city = null;
-    protected $street = null;
-    protected $zip = null;
-    protected $amout = null;
-    protected $currency = null;
-    protected $action = null;
-    protected $note = null;
+    /**
+     * @var string|null $cardType
+     */
+    protected $cardType= null;
+
+    /**
+     * @var string|null $cardNumber
+     */
+    protected $cardNumber= null;
+
+    /**
+     * @var string|null $expirationDate
+     */
+    protected $expirationDate= null;
+
+    /**
+     * @var string|null $cvv2
+     */
+    protected $cvv2= null;
+
+    /**
+     * @var string|null $firstName
+     */
+    protected $firstName= null;
+
+    /**
+     * @var string|null $lastName
+     */
+    protected $lastName= null;
+
+    /**
+     * @var string|null $email
+     */
+    protected $email= null;
+
+    /**
+     * @var string|null $countryCode
+     */
+    protected $countryCode= null;
+
+    /**
+     * @var string|null $state
+     */
+    protected $state= null;
+
+    /**
+     * @var string|null $city
+     */
+    protected $city= null;
+
+    /**
+     * @var string|null $street
+     */
+    protected $street= null;
+
+    /**
+     * @var string|null $zip
+     */
+    protected $zip= null;
+
+    /**
+     * @var string|null $amout
+     */
+    protected $amout= null;
+
+    /**
+     * @var string|null $currency
+     */
+    protected $currency= null;
+
+    /**
+     * @var string|null $action
+     */
+    protected $action= null;
+
+    /**
+     * @var string|null $note
+     */
+    protected $note= null;
 
     /**
      * The action to be performed to the
@@ -215,7 +431,8 @@ class Recurring extends Base
     /**
      * Set item amount
      *
-     * @param integer or float        Item amount
+     * @param int|float* $amount Item amount
+     *
      * @return Eden\Paypal\Recurring
      */
     public function setAmount($amount)
@@ -231,7 +448,8 @@ class Recurring extends Base
     /**
      * Set the billing frequency
      *
-     * @param integer        Billing frequency
+     * @param int* $billingFrequency Billing frequency
+     *
      * @return Eden\Paypal\Recurring
      */
     public function setBillingFrequency($billingFrequency)
@@ -246,7 +464,8 @@ class Recurring extends Base
     /**
      * Set credit card number
      *
-     * @param string        Credit card number
+     * @param string* $cardNumber Credit card number
+     *
      * @return Eden\Paypal\Recurring
      */
     public function setCardNumber($cardNumber)
@@ -262,7 +481,8 @@ class Recurring extends Base
     /**
      * Set credit card type
      *
-     * @param string        Credit card type
+     * @param string* $cardType Credit card type
+     *
      * @return Eden\Paypal\Recurring
      */
     public function setCardType($cardType)
@@ -278,7 +498,8 @@ class Recurring extends Base
     /**
      * Set cardholder city
      *
-     * @param string        City
+     * @param string* $city City
+     *
      * @return Eden\Paypal\Recurring
      */
     public function setCity($city)
@@ -294,7 +515,8 @@ class Recurring extends Base
     /**
      * Set cardholder country code
      *
-     * @param string        Country Code
+     * @param string* $countryCode Country Code
+     *
      * @return Eden\Paypal\Recurring
      */
     public function setCountryCode($countryCode)
@@ -310,7 +532,8 @@ class Recurring extends Base
     /**
      * Set currency code
      *
-     * @param string        Currency code
+     * @param string* $currency Currency code
+     *
      * @return Eden\Paypal\Recurring
      */
     public function setCurrency($currency)
@@ -326,7 +549,8 @@ class Recurring extends Base
     /**
      * Set Card Verification Value
      *
-     * @param string        3 - digit cvv number
+     * @param string* $cvv2 3 - digit cvv number
+     *
      * @return Eden\Paypal\Recurring
      */
     public function setCvv2($cvv2)
@@ -355,7 +579,8 @@ class Recurring extends Base
     /**
      * Set item description
      *
-     * @param string        Item description
+     * @param string* $description Item description
+     *
      * @return Eden\Paypal\Recurring
      */
     public function setDescription($description)
@@ -371,7 +596,8 @@ class Recurring extends Base
     /**
      * Set cardholder email address
      *
-     * @param string        Email address
+     * @param string* $email Email address
+     *
      * @return Eden\Paypal\Recurring
      */
     public function setEmail($email)
@@ -387,7 +613,8 @@ class Recurring extends Base
     /**
      * Set credit card expiration date
      *
-     * @param string        Credit card expiration date
+     * @param string* $expirationDate Credit card expiration date
+     *
      * @return Eden\Paypal\Recurring
      */
     public function setExpirationDate($expirationDate)
@@ -403,7 +630,8 @@ class Recurring extends Base
     /**
      * Set cardholder first name
      *
-     * @param string        First name
+     * @param string* $firstName First name
+     *
      * @return Eden\Paypal\Recurring
      */
     public function setFirstName($firstName)
@@ -419,7 +647,8 @@ class Recurring extends Base
     /**
      * Set cardholder last name
      *
-     * @param string        Last name
+     * @param string* $lastName Last name
+     *
      * @return Eden\Paypal\Recurring
      */
     public function setLastName($lastName)
@@ -448,7 +677,8 @@ class Recurring extends Base
     /**
      * Set reason for the change in status
      *
-     * @param string    The reason for the change in status
+     * @param string* $note The reason for the change in status
+     *
      * @return Eden\Paypal\Recurring
      */
     public function setNote($note)
@@ -464,7 +694,8 @@ class Recurring extends Base
     /**
      * Set Profile Id
      *
-     * @param string    a valid profile id
+     * @param string* $profileId a valid profile id
+     *
      * @return Eden\Paypal\Recurring
      */
     public function setProfileId($profileId)
@@ -493,7 +724,8 @@ class Recurring extends Base
     /**
      * Set cardholder state
      *
-     * @param string        State
+     * @param string* $state State
+     *
      * @return Eden\Paypal\Recurring
      */
     public function setState($state)
@@ -509,7 +741,8 @@ class Recurring extends Base
     /**
      * Set to manage profile status
      *
-     * @param boolean
+     * @param bool* $status
+     *
      * @return Eden\Paypal\Recurring
      */
     public function setStatus($status)
@@ -522,7 +755,8 @@ class Recurring extends Base
     /**
      * Set cardholder street
      *
-     * @param string        Street
+     * @param string* $street Street
+     *
      * @return Eden\Paypal\Recurring
      */
     public function setStreet($street)
@@ -564,7 +798,8 @@ class Recurring extends Base
     /**
      * Set cardholder zip code
      *
-     * @param string        Zip code
+     * @param string* $zip Zip code
+     *
      * @return Eden\Paypal\Recurring
      */
     public function setZip($zip)

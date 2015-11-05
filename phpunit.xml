@@ -9,11 +9,16 @@
          processIsolation="false"
          stopOnFailure="false"
          syntaxCheck="false"
-         bootstrap="Tests/bootstrap.php"
+         bootstrap="test/bootstrap.php"
 >
   <testsuites>
-    <testsuite name="Eden Paypal Test Suite">
-      <directory>./Tests/Paypal</directory>
+    <testsuite name="Eden Oauth Test Suite">
+      <file>test/Index.php</file>
+      <file>test/Authorization.php</file>
+      <file>test/Base.php</file>
+      <file>test/Billing.php</file>
+      <file>test/Button.php</file>
+      <file>test/Checkout.php</file>
     </testsuite>
   </testsuites>
 
