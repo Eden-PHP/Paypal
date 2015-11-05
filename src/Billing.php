@@ -1,9 +1,9 @@
 <?php //-->
-/*
- * This file is part of the Paypal package of the Eden PHP Library.
- * (c) 2013-2014 Openovate Labs
+/**
+ * This file is part of the Eden PHP Library.
+ * (c) 2014-2016 Openovate Labs
  *
- * Copyright and license information can be found at LICENSE
+ * Copyright and license information can be found at LICENSE.txt
  * distributed with this package.
  */
 
@@ -12,43 +12,130 @@ namespace Eden\Paypal;
 /**
  * Paypal Website Payments Pro - Billing Agreement
  *
- * @package Eden
- * @category Paypal
- * @author Airon Paul Dumael airon.dumael@gmail.com
+ * @vendor   Eden
+ * @package  Paypal
+ * @author   Christian Blanquera <cblanquera@openovate.com>
+ * @author   Airon Paul Dumael <airon.dumael@gmail.com>
+ * @standard PSR-2
  */
 class Billing extends Base
 {
+    /**
+     * @const string SET_AGREEMENT
+     */
     const SET_AGREEMENT = 'SetCustomerBillingAgreement';
+
+    /**
+     * @const string GET_AGREEMENT
+     */
     const GET_AGREEMENT = 'GetBillingAgreementCustomerDetails';
+
+    /**
+     * @const string TOKEN
+     */
     const TOKEN = 'TOKEN';
+
+    /**
+     * @const string RETURN_URL
+     */
     const RETURN_URL = 'RETURNURL';
+
+    /**
+     * @const string CANCEL_URL
+     */
     const CANCEL_URL = 'CANCELURL';
 
+    /**
+     * @const string ANY
+     */
     const ANY = 'Any';
+
+    /**
+     * @const string INSTANT_ONLY
+     */
     const INSTANT_ONLY = 'InstantOnly';
+
+    /**
+     * @const string ACK
+     */
     const ACK = 'ACK';
+
+    /**
+     * @const string SUCCESS
+     */
     const SUCCESS = 'Success';
 
+    /**
+     * @const string BILLING_TYPE
+     */
     const BILLING_TYPE = 'L_BILLINGTYPEn';
+
+    /**
+     * @const string BILLING_DESC
+     */
     const BILLING_DESC = 'L_BILLINGAGREEMENTDESCRIPTIONn';
+
+    /**
+     * @const string PAYMENT_TYPE
+     */
     const PAYMENT_TYPE = 'L_PAYMENTTYPEn';
+
+    /**
+     * @const string AGREEMENT_CUSTOM
+     */
     const AGREEMENT_CUSTOM = 'L_BILLINGAGREEMENTCUSTOMn';
+
+    /**
+     * @const string AMOUNT
+     */
     const AMOUNT = 'AMT';
 
+    /**
+     * @var string|null $token
+     */
     protected $token = null;
+
+    /**
+     * @var string|null $amount
+     */
     protected $amout = null;
+
+    /**
+     * @var string|null $currency
+     */
     protected $currency = null;
+
+    /**
+     * @var string|null $completeType
+     */
     protected $completeType = null;
+
+    /**
+     * @var string|null $billingType
+     */
     protected $billingType = null;
+
+    /**
+     * @var string|null $billingDesc
+     */
     protected $billingDesc = null;
+
+    /**
+     * @var string|null $paymentType
+     */
     protected $paymentType = null;
+
+    /**
+     * @var string|null $agreementCustom
+     */
     protected $agreementCustom  = null;
 
     /**
      * initiates the creation of a billing agreement.
      *
-     * @param string        Returing URL
-     * @param string        Cancel URL
+     * @param string* $return Returing URL
+     * @param string* $cancel Cancel URL
+     *
      * @return string
      */
     public function getResponse($return, $cancel)
@@ -91,10 +178,11 @@ class Billing extends Base
 
     /**
      * Custom annotation field for your own use.
+     * For recurring, this is ignored
      *
-     * @param string
+     * @param string* $agreementCustom
+     *
      * @return Eden\Paypal\Billing
-     * @note For recurring payments, this field is ignored.
      */
     public function setAgreementCustom($agreementCustom)
     {
@@ -109,7 +197,8 @@ class Billing extends Base
      * Description of goods or services associated
      * with the billing agreement.
      *
-     * @param string
+     * @param string* $billingDesc
+     *
      * @return Eden\Paypal\Billing
      */
     public function setBillingDesc($billingDesc)
@@ -124,7 +213,8 @@ class Billing extends Base
     /**
      * Set billing type
      *
-     * @param string
+     * @param string* $billingType
+     *
      * @return Eden\Paypal\Billing
      */
     public function setBillingType($billingType)
@@ -138,9 +228,9 @@ class Billing extends Base
 
     /**
      * Set payment type to Any
+     * For recurring, this is ignored
      *
      * @return Eden\Paypal\Billing
-     * @note For recurring payments, this field is ignored.
      */
     public function setToAny()
     {
@@ -150,9 +240,9 @@ class Billing extends Base
 
     /**
      * Set payment type to Instant Only
+     * For recurring, this is ignored
      *
      * @return Eden\Paypal\Billing
-     * @note For recurring payments, this field is ignored.
      */
     public function setToInstantOnly()
     {

@@ -1,9 +1,9 @@
 <?php //-->
-/*
- * This file is part of the Paypal package of the Eden PHP Library.
- * (c) 2013-2014 Openovate Labs
+/**
+ * This file is part of the Eden PHP Library.
+ * (c) 2014-2016 Openovate Labs
  *
- * Copyright and license information can be found at LICENSE
+ * Copyright and license information can be found at LICENSE.txt
  * distributed with this package.
  */
 
@@ -12,59 +12,232 @@ namespace Eden\Paypal;
 /**
  * Website Payments Standard - Button Manager
  *
- * @package Eden
- * @category Paypal
- * @author Airon Paul Dumael airon.dumael@gmail.com
+ * @vendor   Eden
+ * @package  Paypal
+ * @author   Christian Blanquera <cblanquera@openovate.com>
+ * @author   Airon Paul Dumael <airon.dumael@gmail.com>
+ * @standard PSR-2
  */
 class Button extends Base
 {
+    /**
+     * @const string SEARCH
+     */
     const SEARCH = 'BMButtonSearch';
+
+    /**
+     * @const string SET_BUTTON
+     */
     const SET_BUTTON = 'BMCreateButton';
+
+    /**
+     * @const string GET_BUTTON
+     */
     const GET_BUTTON = 'BMGetButtonDetails';
+
+    /**
+     * @const string GET_INVENTORY
+     */
     const GET_INVENTORY = 'BMGetInventory';
+
+    /**
+     * @const string REMOVE_BUTTON
+     */
     const REMOVE_BUTTON = 'BMManageButtonStatus';
+
+    /**
+     * @const string UPDATE_BUTTON
+     */
     const UPDATE_BUTTON = 'BMUpdateButton';
 
+    /**
+     * @const string BUTTON_ID
+     */
     const BUTTON_ID  = 'HOSTEDBUTTONID';
+
+    /**
+     * @const string REMOVE
+     */
     const REMOVE = 'DELETE';
 
+    /**
+     * @const string OPTION_NAME
+     */
     const OPTION_NAME = 'OPTIONnNAME';
+
+    /**
+     * @const string OPTION_SELECT
+     */
     const OPTION_SELECT = 'L_OPTIONnSELECTx';
+
+    /**
+     * @const string OPTION_PRICE
+     */
     const OPTION_PRICE = 'L_OPTION0PRICEx';
+
+    /**
+     * @const string OPTION_TYPE
+     */
     const OPTION_TYPE = 'OPTIONnTYPE';
+
+    /**
+     * @const string BILLING_PERIOD
+     */
     const BILLING_PERIOD = 'L_OPTIONnBILLINGPERIODx';
+
+    /**
+     * @const string BILLING_FREQUENCY
+     */
     const BILLING_FREQUENCY = 'L_OPTIONnBILLINGPFREQUENCYx';
+
+    /**
+     * @const string BILING_TOTAL
+     */
     const BILING_TOTAL = 'L_OPTIONnTOTALBILLINGCYCLESx';
+
+    /**
+     * @const string OPTION_AMOUNT
+     */
     const OPTION_AMOUNT = 'L_OPTIONnAMOUNTx';
+
+    /**
+     * @const string SHIPPING_AMOUNT
+     */
     const SHIPPING_AMOUNT = 'L_OPTIONnSHIPPINGAMOUNTx';
+
+    /**
+     * @const string TAX_AMOUNT
+     */
     const TAX_AMOUNT = 'L_OPTIONnTAXAMOUNTx';
+
+    /**
+     * @const string START
+     */
     const START = 'STARTDATE';
+
+    /**
+     * @const string END
+     */
     const END = 'ENDDATE';
 
+    /**
+     * @const string BUY_NOW
+     */
     const BUY_NOW = 'BUYNOW';
+
+    /**
+     * @const string CART
+     */
     const CART = 'CART';
+
+    /**
+     * @const string GIFT_CERTIFICATE
+     */
     const GIFT_CERTIFICATE = 'GIFTCERTIFICATE';
+
+    /**
+     * @const string SUBSCRIBE
+     */
     const SUBSCRIBE = 'SUBSCRIBE';
+
+    /**
+     * @const string DONATE
+     */
     const DONATE = 'DONATE';
+
+    /**
+     * @const string UNSUBSCRIBE
+     */
     const UNSUBSCRIBE = 'UNSUBSCRIBE';
+
+    /**
+     * @const string VIEW_CART
+     */
     const VIEW_CART = 'VIEWCART';
+
+    /**
+     * @const string PAYMENT_PLAN
+     */
     const PAYMENT_PLAN = 'PAYMENTPLAN';
+
+    /**
+     * @const string AUTOBILLING
+     */
     const AUTOBILLING = 'AUTOBILLING';
+
+    /**
+     * @const string PAYMENT
+     */
     const PAYMENT = 'PAYMENT';
 
+    /**
+     * @var string|null $buttonId
+     */
     protected $buttonId = null;
+
+    /**
+     * @var string|null $start
+     */
     protected $start = null;
+
+    /**
+     * @var string|null $end
+     */
     protected $end = null;
+
+    /**
+     * @var string|null $buttonType
+     */
     protected $buttonType = null;
+
+    /**
+     * @var string|null $optionName
+     */
     protected $optionName = null;
+
+    /**
+     * @var string|null $optionSelect
+     */
     protected $optionSelect = null;
+
+    /**
+     * @var string|null $optionPrice
+     */
     protected $optionPrice = null;
+
+    /**
+     * @var string|null $optionType
+     */
     protected $optionType = null;
+
+    /**
+     * @var string|null $billingPeriod
+     */
     protected $billingPeriod = null;
+
+    /**
+     * @var string|null $billingFrequency
+     */
     protected $billingFrequency = null;
+
+    /**
+     * @var string|null $billingTotal
+     */
     protected $billingTotal = null;
+
+    /**
+     * @var string|null $optionAmount
+     */
     protected $optionAmount = null;
+
+    /**
+     * @var string|null $shippingAmount
+     */
     protected $shippingAmount = null;
+
+    /**
+     * @var string|null $taxAmount
+     */
     protected $taxAmount = null;
 
     /**
@@ -173,7 +346,8 @@ class Button extends Base
     /**
      * The base amount to bill for the cycle.
      *
-     * @param string
+     * @param string* $amount
+     *
      * @return Eden\Paypal\Button
      */
     public function setAmount($amount)
@@ -192,7 +366,8 @@ class Button extends Base
      * is every 2 months. The default billing
      * frequency is 1.
      *
-     * @param string
+     * @param string* $billingFrequency
+     *
      * @return Eden\Paypal\Button
      */
     public function setBillingFrequency($billingFrequency)
@@ -213,7 +388,8 @@ class Button extends Base
      * Month
      * Year
      *
-     * @param string
+     * @param string* $billingPeriod
+     *
      * @return Eden\Paypal\Button
      */
     public function setBillingPeriod($billingPeriod)
@@ -229,7 +405,8 @@ class Button extends Base
      * The total number of billing cycles, regardless of
      * the duration of a cycle; 1 is the default
      *
-     * @param string
+     * @param string* $billingTotal
+     *
      * @return Eden\Paypal\Button
      */
     public function setBillingTotal($billingTotal)
@@ -244,7 +421,8 @@ class Button extends Base
     /**
      * Set hosted button id
      *
-     * @param string    The hosted button id
+     * @param string* $setbuttonId The hosted button id
+     *
      * @return Eden\Paypal\Button
      */
     public function setButtonId($setbuttonId)
@@ -260,7 +438,8 @@ class Button extends Base
      * Ending date for the search.
      * The value must be in UTC/GMT format
      *
-     * @param string
+     * @param string* $end
+     *
      * @return Eden\Paypal\Button
      */
     public function setEndDate($end)
@@ -279,7 +458,8 @@ class Button extends Base
      * buttons; otherwise, it is a digit between 0
      * and 9, inclusive
      *
-     * @param string
+     * @param string* $name
+     *
      * @return Eden\Paypal\Button
      */
     public function setName($name)
@@ -295,10 +475,12 @@ class Button extends Base
      * It is a list of variables for each OPTIONnNAME,
      * in which x is a digit between 0 and 9, inclusive
      *
-     * @param string
-     * @return Eden\Paypal\Button
-     * @note If you specify a price, you cannot set
+     * If you specify a price, you cannot set
      * a button variable to amount.
+     *
+     * @param string* $optionPrice
+     *
+     * @return Eden\Paypal\Button
      */
     public function setOptionPrice($optionPrice)
     {
@@ -313,7 +495,8 @@ class Button extends Base
      * It is a list of variables for each OPTIONnNAME,
      * in which x is a digit between 0 and 9, inclusive
      *
-     * @param string
+     * @param string* $optionSelect
+     *
      * @return Eden\Paypal\Button
      */
     public function setOptionSelect($optionSelect)
@@ -329,7 +512,8 @@ class Button extends Base
      * The shipping amount to bill for the cycle,
      * in addition to the base amount.
      *
-     * @param string
+     * @param string* $shippingAmount
+     *
      * @return Eden\Paypal\Button
      */
     public function setShippingAmount($shippingAmount)
@@ -345,7 +529,8 @@ class Button extends Base
      * Starting date for the search.
      * The value must be in UTC/GMT format
      *
-     * @param string
+     * @param string* $start
+     *
      * @return Eden\Paypal\Button
      */
     public function setStartDate($start)
@@ -362,7 +547,8 @@ class Button extends Base
      * The tax amount to bill for the cycle,
      * in addition to the base amount.
      *
-     * @param string
+     * @param string* $taxAmount
+     *
      * @return Eden\Paypal\Button
      */
     public function setTaxAmount($taxAmount)
@@ -505,7 +691,6 @@ class Button extends Base
      * VARIABLE - Variable installments
      * EMI        - Equal installments
      *
-     * @param string
      * @return Eden\Paypal\Button
      */
     public function setTypeFull()

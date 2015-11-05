@@ -7,28 +7,24 @@ class Eden_Oauth_Tests_Paypal_FactoryTest extends \PHPUnit_Framework_TestCase
     public function testAuthorization()
     {
 		$authorization = eden('paypal')->authorization('user', 'password', 'signature', 'certificate');
-        // print_r($authorization);
-		$this->assertInstanceOf('Eden\\Paypal\\Authorization', $authorization);
+        $this->assertInstanceOf('Eden\\Paypal\\Authorization', $authorization);
     }
 
     public function testBilling()
     {
         $billing = eden('paypal')->billing('user', 'password', 'signature', 'certificate');
-        // print_r($billing);
         $this->assertInstanceOf('Eden\\Paypal\\Billing', $billing);
     }
 
     public function testButton()
     {
         $button = eden('paypal')->button('user', 'password', 'signature', 'certificate');
-        print_r($button);
         $this->assertInstanceOf('Eden\\Paypal\\Button', $button);
     }
 
     public function testCheckout()
     {
         $checkout = eden('paypal')->checkout('user', 'password', 'signature', 'certificate');
-        print_r($checkout);
         $this->assertInstanceOf('Eden\\Paypal\\Checkout', $checkout);
     }
 
@@ -42,14 +38,12 @@ class Eden_Oauth_Tests_Paypal_FactoryTest extends \PHPUnit_Framework_TestCase
     public function testRecurring()
     {
         $object = eden('paypal')->recurring('user', 'password', 'signature', 'certificate');
-        print_r($object);
         $this->assertInstanceOf('Eden\\Paypal\\Recurring', $object);
     }
 
     public function testTransaction()
     {
         $object = eden('paypal')->transaction('user', 'password', 'signature', 'certificate');
-        print_r($object);
         $this->assertInstanceOf('Eden\\Paypal\\Transaction', $object);
     }
 

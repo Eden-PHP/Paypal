@@ -1,58 +1,184 @@
 <?php //-->
-/*
- * This file is part of the Paypal package of the Eden PHP Library.
- * (c) 2013-2014 Openovate Labs
+/**
+ * This file is part of the Eden PHP Library.
+ * (c) 2014-2016 Openovate Labs
  *
- * Copyright and license information can be found at LICENSE
+ * Copyright and license information can be found at LICENSE.txt
  * distributed with this package.
  */
 
 namespace Eden\Paypal;
 
 /**
- * Paypal Website Payments Pro - Common transaction
+ * Website Payments Standard - Button Manager
  *
- * @package Eden
- * @category Paypal
- * @author Airon Paul Dumael airon.dumael@gmail.com
+ * @vendor   Eden
+ * @package  Paypal
+ * @author   Christian Blanquera <cblanquera@openovate.com>
+ * @author   Airon Paul Dumael <airon.dumael@gmail.com>
+ * @standard PSR-2
  */
 class Transaction extends Base
 {
+    /**
+     * @const string GET_DETAIL
+     */
     const GET_DETAIL = 'GetTransactionDetails';
+
+    /**
+     * @const string MANAGE_STATUS
+     */
     const MANAGE_STATUS = 'ManagePendingTransactionStatus';
+
+    /**
+     * @const string REFUND_TRANSACTION
+     */
     const REFUND_TRANSACTION = 'RefundTransaction';
+
+    /**
+     * @const string SEARCH
+     */
     const SEARCH = 'TransactionSearch';
 
+    /**
+     * @const string ACTION
+     */
     const ACTION = 'ACTION';
+
+    /**
+     * @const string REFUND_TYPE
+     */
     const REFUND_TYPE = 'REFUNDTYPE';
+
+    /**
+     * @const string STORE_ID
+     */
     const STORE_ID = 'STOREID';
+
+    /**
+     * @const string START
+     */
     const START = 'STARTDATE';
+
+    /**
+     * @const string END
+     */
     const END = 'ENDDATE';
+
+    /**
+     * @const string EMAIL
+     */
     const EMAIL = 'EMAIL';
+
+    /**
+     * @const string RECEIVER
+     */
     const RECEIVER = 'RECEIVER';
+
+    /**
+     * @const string RECEIPT_ID
+     */
     const RECEIPT_ID = 'RECEIPTID';
+
+    /**
+     * @const string TRANSACTION_ID
+     */
     const TRANSACTION_ID = 'TRANSACTIONID';
+
+    /**
+     * @const string CARD_NUMBER
+     */
     const CARD_NUMBER = 'ACCT';
+
+    /**
+     * @const string AMOUNT
+     */
     const AMOUNT = 'AMT';
+
+    /**
+     * @const string CURRENCY
+     */
     const CURRENCY = 'CURRENCYCODE';
+
+    /**
+     * @const string STATUS
+     */
     const STATUS = 'STATUS';
+
+    /**
+     * @const string NOTE
+     */
     const NOTE = 'NOTE';
 
+    /**
+     * @var string|null $action
+     */
+    protected $action= null;
 
-    protected $action = null;
-    protected $refundType = null;
-    protected $amount = null;
-    protected $currency = null;
-    protected $note = null;
-    protected $storeId = null;
-    protected $start = null;
-    protected $end = null;
-    protected $email = null;
-    protected $receiver = null;
-    protected $receiptId = null;
-    protected $transactionId = null;
-    protected $cardNumber = null;
-    protected $status = null;
+    /**
+     * @var string|null $refundType
+     */
+    protected $refundType= null;
+
+    /**
+     * @var string|null $amount
+     */
+    protected $amount= null;
+
+    /**
+     * @var string|null $currency
+     */
+    protected $currency= null;
+
+    /**
+     * @var string|null $note
+     */
+    protected $note= null;
+
+    /**
+     * @var string|null $storeId
+     */
+    protected $storeId= null;
+
+    /**
+     * @var string|null $start
+     */
+    protected $start= null;
+
+    /**
+     * @var string|null $end
+     */
+    protected $end= null;
+
+    /**
+     * @var string|null $email
+     */
+    protected $email= null;
+
+    /**
+     * @var string|null $receiver
+     */
+    protected $receiver= null;
+
+    /**
+     * @var string|null $receiptId
+     */
+    protected $receiptId= null;
+
+    /**
+     * @var string|null $transactionId
+     */
+    protected $transactionId= null;
+
+    /**
+     * @var string|null $cardNumber
+     */
+    protected $cardNumber= null;
+
+    /**
+     * @var string|null $status
+     */
+    protected $status= null;
 
     /**
      * Obtains information about a specific transaction.
@@ -121,9 +247,10 @@ class Transaction extends Base
      * Searches transaction history for transactions
      * that meet the specified criteria.
      *
-     * @return string
-     * @note The maximum number of transactions that
+     * The maximum number of transactions that
      * can be returned from a TransactionSearch API call is 100.
+     *
+     * @return string
      */
     public function search()
     {
@@ -159,7 +286,8 @@ class Transaction extends Base
     /**
      * Valid values are Accept or Deny
      *
-     * @param string
+     * @param string* $action
+     *
      * @return Eden\Paypal\Transaction
      */
     public function setAction($action)
@@ -175,7 +303,8 @@ class Transaction extends Base
     /**
      * Set item amount
      *
-     * @param string        Item amount
+     * @param string* $amount Item amount
+     *
      * @return Eden\Paypal\Transaction
      */
     public function setAmount($amount)
@@ -191,7 +320,8 @@ class Transaction extends Base
     /**
      * Search by credit card number
      *
-     * @param string        Credit card number
+     * @param string* $cardNumber Credit card number
+     *
      * @return Eden\Paypal\Transaction
      */
     public function setCardNumber($cardNumber)
@@ -207,7 +337,8 @@ class Transaction extends Base
     /**
      * Set currency code
      *
-     * @param string        Currency code
+     * @param string* $currency Currency Code
+     *
      * @return Eden\Paypal\Transaction
      */
     public function setCurrency($currency)
@@ -223,7 +354,8 @@ class Transaction extends Base
     /**
      * Search by the buyer’s email address.
      *
-     * @param string
+     * @param string* $email
+     *
      * @return Eden\Paypal\Transaction
      */
     public function setEmail($email)
@@ -240,7 +372,8 @@ class Transaction extends Base
      * The latest transaction date to be
      * included in the search.
      *
-     * @param string
+     * @param string* $end
+     *
      * @return Eden\Paypal\Transaction
      */
     public function setEndDate($end)
@@ -254,7 +387,8 @@ class Transaction extends Base
     /**
      * Custom memo about the refund.
      *
-     * @param string
+     * @param string* $note
+     *
      * @return Eden\Paypal\Transaction
      */
     public function setNote($note)
@@ -271,7 +405,8 @@ class Transaction extends Base
      * Search by the PayPal Account Optional
      * receipt ID.
      *
-     * @param string
+     * @param string* $receiptId
+     *
      * @return Eden\Paypal\Transaction
      */
     public function setReceiptId($receiptId)
@@ -290,7 +425,8 @@ class Transaction extends Base
      * address, this is the primary email. It can
      * also be a non-primary email address.
      *
-     * @param string
+     * @param string* $receiver
+     *
      * @return Eden\Paypal\Transaction
      */
     public function setReceiver($receiver)
@@ -310,7 +446,8 @@ class Transaction extends Base
      * ExternalDispute – External dispute.
      * Other – Other type of refund.
      *
-     * @param string
+     * @param string* $refundType
+     *
      * @return Eden\Paypal\Transaction
      */
     public function setRefundType($refundType)
@@ -327,7 +464,8 @@ class Transaction extends Base
      * The earliest transaction date at
      * which to start the search.
      *
-     * @param string
+     * @param string* $start
+     *
      * @return Eden\Paypal\Transaction
      */
     public function setStartDate($start)
@@ -344,7 +482,8 @@ class Transaction extends Base
     /**
      * Search by transaction status.
      *
-     * @param string        Currency code
+     * @param string* $status
+     *
      * @return Eden\Paypal\Transaction
      */
     public function setStatus($status)
@@ -361,7 +500,8 @@ class Transaction extends Base
      * ID of the merchant store. This field is
      * required for point-of-sale transactions.
      *
-     * @param string
+     * @param string* $storeId
+     *
      * @return Eden\Paypal\Transaction
      */
     public function setStoreId($storeId)
@@ -379,7 +519,8 @@ class Transaction extends Base
      * returned results are from the merchant’s
      * transaction records.
      *
-     * @param string
+     * @param string* $transactionId
+     *
      * @return Eden\Paypal\Transaction
      */
     public function setTransactionId($transactionId)

@@ -1,23 +1,21 @@
 {
     "name": "eden/paypal",
     "type": "library",
-    "description": "Eden - Paypal API",
+    "description": "Eden PayPal component",
     "keywords": ["eden", "library"],
     "homepage": "http://eden-php.com",
     "license": "MIT",
     "authors": [
         {
-            "name": "Airon Paul Dumael",
-            "email": "airon.dumael@gmail.com"
+            "name": "Christian Blanquera",
+            "email": "cblanquera@openovate.com"
         }
     ],
     "require": {
-        "php": ">=5.3.1",
-        "eden/core": "1.*",
-        "eden/curl": "1.*"
+        "php": ">=5.4.1",
+		"eden/curl": "4.*"
     },
     "autoload": {
-         "psr-0": { "Eden\\Paypal\\": "" }
-    },
-    "target-dir": "Eden/Paypal"
+         "psr-4": { "Eden\\Paypal\\": "/src" }
+    }
 }
